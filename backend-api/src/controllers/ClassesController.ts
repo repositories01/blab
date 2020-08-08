@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 import db from '../database/connection';
 import convertHourToMinutes from '../utils/convertHourToMinutes';
 
-//definir formato do objeto
 interface ScheduleItem {
     week_day: number;
     from: string;
@@ -53,11 +52,9 @@ export default class ClassesController{
             schedule
         } = request.body;
     
-        //transaction
         const trx = await db.transaction();
     
         try{
-            //registro de usuário
             const insertedUsersIds = await trx('users').insert({
                 name,
                 avatar,
@@ -65,20 +62,16 @@ export default class ClassesController{
                 bio
             });
     
-            //id inserido
             const user_id = insertedUsersIds[0];
     
-            //inserir aulas
             const insertedClassesIds = await trx('classes').insert({
                 subject,
                 cost,
                 user_id,
             });
     
-            //id inserido da aula
             const class_id = insertedClassesIds[0];
     
-            //percorrer e formatar objetos
             const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
                 return {
                     class_id,
@@ -88,16 +81,13 @@ export default class ClassesController{
                 };
             })
     
-            //inserir na tabela
             await trx('class_schedule').insert(classSchedule);
     
-            //finalmente fazer alterações
             await trx.commit();
     
             return response.status(201).send();
     
         } catch (err) {
-            //desfazer error no banco se tiver
             await trx.rollback();
     
             return response.status(400).json({
