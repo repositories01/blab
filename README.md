@@ -1,4 +1,3 @@
-﻿# 📚 Aplicação Proffy v1.0
 
 <h1 align="center">
     <img alt="Proffy" src="assets/logo.svg" height="100px" />
