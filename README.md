@@ -20,11 +20,6 @@
   <span> · </span>
   <a href="#-como-usar">Como usar</a>
   <span> · </span>
-  <a href="#-to-do">To Do</a>
-  <span> · </span>
-  <a href="#-como-contribuir">Como contribuir</a>
-  <span> · </span>
-  <a href="#-licença">Licença</a>
 </h3>
 
 ## 💭 Sobre
