@@ -1,12 +1,6 @@
 import { Request, Response } from "express";
 import db from "../database/connection";
 
-interface Account {
-  week_day: number;
-  from: string;
-  to: string;
-}
-
 export default class AuthController {
   async index(req: Request, res: Response) {
     const users = await db("accounts");
@@ -15,21 +9,27 @@ export default class AuthController {
 
   async auth(req: Request, res: Response) {
     const { name, email, password } = req.body;
+    // const trx = await db.transaction();
 
-    const trx = await db.transaction();
+    const user = await db("accounts")
+    .where({email: email})
+    .select('id');
 
     try {
-      const insertedAccount = await trx("accounts").insert({
-        name,
-        email,
-        password,
-      });
-
-      await trx.commit();
-      return res.status(201).send();
+       if(user.length == 0){
+          await db("accounts").insert({
+          name,
+          email,
+          password,
+        });
+        res.status(201).send()
+       }else{
+        res.status(400).json({erro: 'email already used'})
+      }
+      
+     
     } catch (err) {
-      await trx.rollback();
-
+      // await trx.rollback();
       return res.status(400).json({
         error: "Unexpected error while creating new user",
       });
