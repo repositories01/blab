@@ -24,7 +24,7 @@ export default class AuthController {
         });
         res.status(201).send()
        }else{
-        res.status(400).json({erro: 'email already used'})
+        res.status(400).json({erro: 'email already exists'})
       }
       
      
