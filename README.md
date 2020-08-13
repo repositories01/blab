@@ -14,26 +14,26 @@
 <p>
 
 <h3 align="center">
-  <a href="#-sobre">Sobre</a>
+  <a href="#-sobre">About</a>
   <span> · </span>
-  <a href="#-tecnologias-utilizadas">Tecnologias utilizadas</a>
+  <a href="#-tecnologias-utilizadas">Stack technology used</a>
   <span> · </span>
-  <a href="#-como-usar">Como usar</a>
+  <a href="#-como-usar">How to use it</a>
   <span> · </span>
 </h3>
 
-## 💭 Sobre
+## 💭 About
 
-Proffy é uma aplicação que tem como objetivo conectar estudantes e professores, dentro dela é fornecido um espaço para que professores registrem sua disponibilidade de horários durante a semana, matérias que leciona, telefone para contato (WhatsApp) e também o custo de sua hora/aula. Já para o estudante é possível encontrar tutores entrar em contato com eles via WhatsApp e também salvar "proffys" em seus favoritos.
+Proffy is an application that have goal to connect students and teachers, within it is provided a space for teachers to record their availability during the week, subjects they teach, phone(WhatsApp) and also the cost of their hour / class. For the student it is possible to find tutors to contact them via WhatsApp and also save "proffys" in their favorites.
 
-A aplicação foi desenvolvida durante a segunda edição da Next Level Week da RocketSeat, entre os dia 03/08/2020 e 09/08/2020, por conta disso foi feita essa homenagem ao dia Nacional dos Profissionais da Educação, que é comemorado em 06 de agosto.
+The application was developed during the second edition of RocketSeat's Next Level Week.
 
-## 👨‍💻 Tecnologias Utilizadas
+## 👨‍💻 Stack technology used
 
-- <a href="https://reactjs.org/" target="_blank" rel="noopener">React</a> no frontend web;
-- <a href="https://reactnative.dev/" target="_blank" rel="noopener">React Native</a> com <a href="https://expo.io/" target="_blank" rel="noopener">Expo</a> no frontend mobile;
-- <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a> com <a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a> no backend;
-- <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a> para tipagem do projeto como um todo.
+- <a href="https://reactjs.org/" target="_blank" rel="noopener">React</a> on the web frontend;
+- <a href="https://reactnative.dev/" target="_blank" rel="noopener">React Native</a> with <a href="https://expo.io/" target="_blank" rel="noopener">Expo</a> on mobile frontend;
+- <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a> with <a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a> on backend;
+- <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a>
 
 ## ⁉ Como usar
 
