@@ -9,7 +9,6 @@ export default class AuthController {
 
   async auth(req: Request, res: Response) {
     const { name, email, password } = req.body;
-    // const trx = await db.transaction();
 
     const user = await db("accounts")
     .where({email: email})
@@ -24,12 +23,11 @@ export default class AuthController {
         });
         res.status(201).send()
        }else{
-        res.status(400).json({erro: 'email already exists'})
+        res.status(400).json({erro: 'Email is  already exists'})
       }
       
      
     } catch (err) {
-      // await trx.rollback();
       return res.status(400).json({
         error: "Unexpected error while creating new user",
       });
