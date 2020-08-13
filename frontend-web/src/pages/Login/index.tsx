@@ -8,13 +8,24 @@ function Login() {
         <form>
           <fieldset>
             <legend className="title">Fazer Login</legend>
-            <input className="input" name="email" placeholder="E-mail" />
-            <input className="input" name="password" placeholder="Senha" />
+            <input
+              type="text"
+              className="input"
+              name="email"
+              placeholder="E-mail"
+            />
+            <input
+              type="password"
+              className="input"
+              name="password"
+              placeholder="Senha"
+            />
           </fieldset>
+
           <fieldset className="password-remember">
-            <input className="check" name="password-remember" type="checkbox" />
-            <label>Lembrar-me</label> 
-            <a>Esqueci minha senha</a>
+            <input type="checkbox" />
+            <label> Lembrar-me </label>
+            <a href="#">Esqueci minha senha</a>
           </fieldset>
 
           <fieldset>
@@ -23,6 +34,10 @@ function Login() {
             </button>
           </fieldset>
         </form>
+        <footer className="singup-link">
+          <span>Não tem conta?</span> <br />
+          <a href="">Cadastre-se </a>
+        </footer>
       </main>
     </div>
   );
