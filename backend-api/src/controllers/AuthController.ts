@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
 import db from "../database/connection";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
+import * as jwt from '../utils/jwt'
 
 export default class AuthController {
   async login(req: Request, res: Response) {
@@ -11,17 +12,26 @@ export default class AuthController {
 
   async signup(req: Request, res: Response) {
     const { name, email, password } = req.body;
+
     const userObj = {
       name,
       email,
       password: crypto.createHash("md5").update(password).digest("hex"),
     };
 
-    const user = await db("accounts").where({ email: email }).select("id");
+    const user = await db("accounts").where({ email: email });
+
     try {
       if (user.length == 0) {
         await db("accounts").insert(userObj);
-        res.status(201).send();
+        const userId:number = await db("accounts")
+          .where({ email: email })
+          .select("id");
+
+          const token = jwt.sign({ user: userId })
+
+        // const verify = jwt.verify(token, "a21za2FtbHNkYW1rbGRhc2Q");
+        res.status(201).json({ userId, token });
       } else {
         res.status(400).json({ erro: "This email already exists" });
       }
