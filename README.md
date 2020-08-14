@@ -35,7 +35,7 @@ The application was developed during the second edition of RocketSeat's Next Lev
 - <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node</a> with <a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a> on backend;
 - <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a>
 
-## ⁉ Como usar
+## ⁉ How to use it
 
 ### 🤔 Pré-requisitos
 
