@@ -9,17 +9,28 @@ export default class AuthController {
 
   async login(req: Request, res: Response) {
 
-    // const [hashType, hash] = req.headers.authorization?.split(' ');
-    const parameters = req.headers.authorization?.split(' ');
-    const iterator = parameters[Symbol.iterator]();
-    const hashType = iterator.next().value
-    const hash = iterator.next().value
+    const parameters = req.headers.authorization;
+    const [_, hash] = parameters.split(' ')
+    const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
+    const passCrypto = crypto.createHash("md5").update(password).digest("hex")
 
-    const credentials = Buffer.from(hash, 'base64').toString();
-    console.log(credentials)
+    try {
 
-    const users = await db("accounts");
-    return res.status(200).json(users);
+      const userId: number = await db("accounts")
+        .where({ email: email, password: passCrypto })
+        .select("id");
+
+      if (userId != 0) {
+        const token: string = jwt.sign({ user: userId })
+        res.status(200).json({ id: userId, token: token });
+
+      }
+
+      res.status(401).json({ erro: "user not found" });
+
+    } catch (err) {
+      res.status(500).json({ erro: err })
+    }
   }
 
 
@@ -44,15 +55,17 @@ export default class AuthController {
 
         const token = jwt.sign({ user: userId })
 
-        // const verify = jwt.verify(token, "a21za2FtbHNkYW1rbGRhc2Q");
         res.status(201).json({ userId, token });
-      } else {
-        res.status(400).json({ erro: "This email already exists" });
+
       }
+      res.status(400).json({ erro: "This email already exists" });
+
     } catch (err) {
+
       return res.status(400).json({
         error: "Unexpected error while creating new user",
       });
+
     }
   }
 }
