@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+
+    "lib": [
+      "es5", "es6", "dom", "dom.iterable"
+  ],
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Basic Options */
