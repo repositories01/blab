@@ -8,6 +8,8 @@ const classesController = new ClassesController();
 const connectionsController = new ConnectionsController();
 const authController = new AuthController();
 
+
+
 routes.get("/classes", classesController.index);
 routes.post("/classes", classesController.create);
 
