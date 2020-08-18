@@ -6,6 +6,11 @@ import * as jwt from '../utils/jwt'
 
 export default class AuthController {
 
+  async index(req: Request, res: Response){
+    const users = await db("accounts")
+    return res.json(users);
+  }
+
 
   async login(req: Request, res: Response) {
 
