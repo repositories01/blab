@@ -1,0 +1,92 @@
+#page-login .container {
+    width: 100%;
+    max-width: 74rem;
+    border-radius: 0.8rem;
+    margin: auto 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  #page-login form{
+      padding: 13rem 0;
+  }
+  
+  #page-login main fieldset {
+    border: 0;
+    padding: 0 2.4rem;
+  }
+  
+  #page-login main fieldset + fieldset {
+    margin-top: 4rem;
+  }
+  
+  #page-login main fieldset .title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: var(--color-text-title);
+    margin-bottom: 1rem;
+    width: 100%;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--color-line-in-white);
+  }
+
+   .subtitle {
+    padding: 10rem 0;
+    margin-bottom: 5rem
+}
+  #page-login main fieldset .input {
+    width: 100%;
+    height: 7rem;
+    border-radius: 0.5rem;
+    background: var(--color-input-background);
+    border: 0.1px solid var(--color-line-in-white);
+    outline: 0;
+    padding: 0 1.6rem;
+    font: 1.6rem Archivo;
+  }
+  
+  #page-login main .password-remember a {
+    float: right;
+    text-decoration: none;
+    color: var(--color-text-base);
+  }
+  
+  #page-login main fieldset button {
+    width: 100%;
+    height: 5.6rem;
+    background: var(--color-secundary);
+    color: var(--color-button-text);
+    border: 0;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font: 700 1.6rem Archivo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    margin-top: 0px;
+  }
+  
+  #page-login main fieldset button:hover {
+    background-color: var(--color-secundary-dark);
+  }
+  
+  .singup-link {
+    padding: 0 2.4rem;
+  }
+  
+  @media (min-width: 700px) {
+    #page-login {
+      max-width: 40vw;
+    }
+  
+  
+  #page-login form{
+      padding: 10rem 0;
+  }
+     
+  }
+  
