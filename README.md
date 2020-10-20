@@ -1,6 +1,6 @@
 
 <h1 align="center">
-    <img alt="Proffy" src="assets/logo.png" height="100px" />
+    <!-- <img alt="Proffy" src="assets/logo.png" height="100px" /> -->
     <br/>
    <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> | <a href="https://pt-br.reactjs.org" target="_blank" rel="noopener">ReactJS</a> | <a href="https://reactnative.dev" target="_blank" rel="noopener">React Native</a>
 </h1>
