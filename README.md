@@ -2,15 +2,13 @@
 <h1 align="center">
     <!-- <img alt="Proffy" src="assets/logo.png" height="100px" /> -->
     <br/>
-   <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> | <a href="https://pt-br.reactjs.org" target="_blank" rel="noopener">ReactJS</a> | <a href="https://reactnative.dev" target="_blank" rel="noopener">React Native</a>
-</h1>
+   <!-- <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> | <a href="https://pt-br.reactjs.org" target="_blank" rel="noopener">ReactJS</a> | <a href="https://reactnative.dev" target="_blank" rel="noopener">React Native</a>
+</h1> -->
 
 <p align="center">
   <img alt="Develop by" src="https://img.shields.io/badge/Develop%20by-Thiago%20Medina-blue?style=flat&logo=Awesome-Lists">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/thiagomedina/proffy?color=informational&style=flat&logo=GitHub-Actions">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/gabrielpatrola/proffy?color=important&style=flat&logo=TypeScript">
-  <img alt="Made By" src="https://img.shields.io/badge/Made%20by-RocketSeat-blueviolet?style=flat&logo=Apache-RocketMQ">
-  <img alt="Made By" src="https://img.shields.io/github/license/gabrielpatrola/proffy?&style=flat&logo=Google-Sheets">
+ 
 <p>
 
 <h3 align="center">
@@ -24,9 +22,8 @@
 
 ## 💭 About
 
-Proffy is an application that have goal to connect students and teachers, within it is provided a space for teachers to record their availability during the week, subjects they teach, phone(WhatsApp) and also the cost of their hour / class. For the student it is possible to find tutors to contact them via WhatsApp and also save "proffys" in their favorites.
+Tutorando is an application that have goal to connect students and teachers, within it is provided a space for teachers to record their availability during the week, subjects they teach, phone(WhatsApp) and also the cost of their hour / class. For the student it is possible to find tutors to contact them via WhatsApp and also save in their favorites.
 
-The application was developed during the second edition of RocketSeat's Next Level Week.
 
 ## 👨‍💻 Stack technology used
 
@@ -54,9 +51,9 @@ Primeiro clone o repositório em seu computador, por meio do terminal utilizando
 
 ```sh
   # Clone o repositório
-  $ git clone https://github.com/Gabrielpatrola/proffy.git
+  $ git clone git@github.com:thiagomedina/tutorando.git
   # Entre na pasta raiz da aplicação
-  $ cd proffy
+  $ cd tutorando
 ```
 
 2. Iniciando o Backend
