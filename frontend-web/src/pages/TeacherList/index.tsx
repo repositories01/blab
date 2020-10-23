@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useCallback } from "react";
+import React, { useState, FormEvent, useCallback, useEffect } from "react";
 
 import PageHeader from "../../components/PageHeader";
 import TeacherItem, { Teacher } from "../../components/TeacherItem";
@@ -9,6 +9,7 @@ import Select from "../../components/Select";
 import api from "../../services/api";
 
 import "./styles.css";
+import { resolve } from "dns";
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
@@ -34,11 +35,16 @@ function TeacherList() {
   const loadApi = useCallback(async () => {
     const response = await api.get("classes");
     setTeachers(response.data);
+    console.log(response.data);
+  }, []);
+
+  useEffect(() => {
+    loadApi();
   }, []);
 
   return (
     <div id="page-teacher-list" className="container">
-      <PageHeader title="Estes são os proffys disponíveis.">
+      <PageHeader title="Estes são os professores disponíveis.">
         <form id="search-teachers" onSubmit={searchTeachers}>
           <Select
             name="subject"
@@ -58,6 +64,8 @@ function TeacherList() {
               { value: "Matemática", label: "Matemática" },
               { value: "Português", label: "Português" },
               { value: "Química", label: "Química" },
+              { value: "Inglês", label: "Inglês" },
+
             ]}
           />
           <Select

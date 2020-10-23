@@ -13,9 +13,8 @@ export default class AuthController {
 
 
   async login(req: Request, res: Response) {
-
-    const parameters = req.headers.authorization;
-    const [_, hash] = parameters.split(' ')
+          
+    const [,hash] = req.headers.authorization?.split(' ');
     const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
     const passCrypto = crypto.createHash("md5").update(password).digest("hex")
 

@@ -25,6 +25,7 @@ function Landing() {
     }, []);
 
     return (
+        <div>
         <div id="page-landing">
             <div id="page-landing-content" className="container">
                 <div className="logo-container">
@@ -35,14 +36,14 @@ function Landing() {
                 <img src={landingImg} alt="Plataforma de estudos" className="hero-image"/>
             
                 <div className="buttons-container">
-                    <Link to="/study" className="study">
+                    {/* <Link to="/study" className="study">
                         <img src={studyIcon} alt="Estudar"/>
                         Estudar
-                    </Link>
+                    </Link> */}
 
                     <Link to="/give-classes" className="give-classes">
                         <img src={giveClassesIcon} alt="Estudar"/>
-                        Dar aulas
+                       Como funciona
                     </Link>
                 </div>
 
@@ -50,6 +51,12 @@ function Landing() {
                     Total de { totalConnections } conexões já realizadas <img src={purpleHeartIcon} alt="Coração roxo" />
                 </span>
             </div>
+        </div>
+
+        <div>
+
+            ssqsq
+        </div>
         </div>
     )
 }
