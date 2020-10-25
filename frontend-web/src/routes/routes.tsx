@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Switch ,
   Route as ReactDOMRoute,
   RouteProps as ReactDOMRouteProps,
   Redirect,
@@ -17,7 +18,8 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const user  = true
 
   return (
     <ReactDOMRoute
