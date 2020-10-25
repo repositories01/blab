@@ -1,12 +1,14 @@
-import React from 'react';
-import Routes from './routes';
+import React from "react";
+import Routes from "./routes";
 
-import './assets/styles/global.css'
-
+import "./assets/styles/global.css";
+import AppProvider from "./hooks/index";
 
 function App() {
   return (
-    <Routes />
+    <AppProvider>
+      <Routes />
+    </AppProvider>
   );
 }
 

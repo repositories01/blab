@@ -23,12 +23,13 @@ const Route: React.FC<RouteProps> = ({
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
+        {console.log('passou aqui')}
         return isPrivate === !!user ? (
           <Component />
         ) : (
           <Redirect
             to={{
-              pathname: isPrivate ? '/' : 'give-classes',
+              pathname: isPrivate ? '/' : '/give-classes',
               state: { from: location },
             }}
           />
