@@ -72,12 +72,13 @@ const handleSubmit = () => {
 
   return (
     <Container>
+            <Background />
       <Content>
+
         <AnimationContainer>
-          {/* <img src={logoImg} alt="GoBarber" /> */}
 
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça seu logon</h1>
+            <h1>Fazer Login</h1>
 
             <InputLogin name="email"  placeholder="Email" />
             <InputLogin
@@ -97,7 +98,6 @@ const handleSubmit = () => {
           </Link> 
         </AnimationContainer>
       </Content>
-      <Background />
     </Container>
   );
 };

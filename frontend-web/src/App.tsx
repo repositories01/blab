@@ -4,14 +4,17 @@ import Routes from "./routes";
 
 import "./assets/styles/global.css";
 import AppProvider from "./hooks/index";
+import GlobalStyle from './styles/global'
 
 function App() {
   return (
-    <AppProvider>
       <BrowserRouter>
+    <AppProvider>
         <Routes />
-      </BrowserRouter>
     </AppProvider>
+
+    <GlobalStyle />
+      </BrowserRouter>
   );
 }
 

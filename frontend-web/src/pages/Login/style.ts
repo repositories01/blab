@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-// import signInBackgrondImg from '../../assets/images/Background.png';
+import signInBackgrondImg from '../../assets/images/background.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -32,17 +32,27 @@ export const apperFromLeft = keyframes`
 export const AnimationContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
+  align-items:flex-start;
   animation: ${apperFromLeft} 1s;
   form {
-    margin: 80px 0;
+    
+    margin: 70px 0;
     width: 340px;
     text-align: center;
     h1 {
-      margin-bottom: 24px;
+      /* margin-bottom: 24px; */
+      /* margin-right: auto; */
+      /* font-size: 3.6rem; */
+      /* font-weight: 700; */
+      
+      color: var(--color-text-title);
+      margin-bottom: 1rem;
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid var(--color-line-in-white);
     }
-    a {
+    a { 
       color: #f4ede8;
       display: block;
       margin-top: 24px;
@@ -54,7 +64,7 @@ export const AnimationContainer = styled.div`
     }
   }
   > a {
-    color: #ff9000;
+    color: var(--color-text-base);
     display: block;
     margin-top: 24px;
     text-decoration: none;
@@ -65,16 +75,13 @@ export const AnimationContainer = styled.div`
       margin-right: 16px;
     }
     &:hover {
-      color: #ff9000;
+      color: var(--color-text-base);
     }
   }
 `;
 
 export const Background = styled.div`
-  display: flex;
   flex: 1;
   background-size: cover;
-  background-color: red;
-  width: 100%;
+  background: url(${signInBackgrondImg}) no-repeat ;
   `;
-  /* background: url(${signInBackgrondImg}) no-repeat center; */
