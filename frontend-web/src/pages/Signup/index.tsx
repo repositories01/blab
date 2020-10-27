@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { FiArrowLeft, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -21,6 +21,8 @@ interface SignInFormData {
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const [isAuth, setIsAuth] = useState(true);
+
 
 //   const { signIn } = useAuth();
 //   const { addToast } = useToast();
@@ -72,8 +74,8 @@ const handleSubmit = () => {
 
   return (
     <Container>
-            <Background />
-      <Content>
+            <Background isAuth={isAuth}/>
+      <Content >
 
         <AnimationContainer>
 

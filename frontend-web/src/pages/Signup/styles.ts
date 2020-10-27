@@ -1,11 +1,21 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import signInBackgrondImg from '../../assets/images/background.png';
+import auth from '../../assets/images/component1.png';
+
+
+
+
+interface ContainerProps {
+  isAuth: boolean;
+
+}
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
   align-items: stretch;
+  
 `;
 
 export const Content = styled.div`
@@ -15,6 +25,11 @@ export const Content = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 700px;
+
+
+
+
+
 `;
 
 export const apperFromLeft = keyframes`
@@ -76,10 +91,28 @@ export const AnimationContainer = styled.div`
   }
 `;
 
-export const Background = styled.div`
+const FadeInAnimation = keyframes`  
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+export const Background = styled.div<ContainerProps>`
   flex: 1;
   background-size: cover;
   background: url(${signInBackgrondImg}) no-repeat ;
+  
+
+
+  ${props =>
+    props.isAuth &&
+    css`
+       animation: ${FadeInAnimation} 1s;
+        background: url(${auth}) no-repeat center ;
+        background-color: var(--color-primary);
+    `}
+
+
+
   `;
 
 export const Button = styled.button`
