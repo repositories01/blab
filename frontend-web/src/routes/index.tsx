@@ -6,7 +6,7 @@ import Route from "./routes";
 import TeacherList from "../pages/TeacherList";
 import TeacherForm from "../pages/TeacherForm";
 import Login from "../pages/Login/index";
-import Signup from "../pages/Signup";
+import Signup from "../pages/Signup/index";
 
 const Routes: React.FC = () => (
   <Switch>

@@ -16,6 +16,7 @@ export const Container = styled.div<ContainerProps>`
   background: var(--color-input-background);
   display: flex;
   align-items: center;
+  margin-top: 10px;
   & + div {
     margin-top: 8px;
   }

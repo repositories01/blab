@@ -1,49 +1,105 @@
-import React from "react";
-import "./styles.css";
+import React, { useRef, useCallback } from 'react';
+import { FiArrowLeft, FiMail, FiLock } from 'react-icons/fi';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
+import * as Yup from 'yup';
+import { Link, useHistory } from 'react-router-dom';
 
-function Signup() {
-    return (
-        <div id="page-login" className="container">
-            <main>
-                <form>
-                    <fieldset>
-                        <legend className="title">Cadastro </legend>
-                        <span className="subtitle">Preencha os dados abaixo<br/>
-                        para começar.
-                        </span>
+import { useAuth } from '../../hooks/auth';
+// import { useToast } from '../../hooks/toast';
+// import getValidationErrors from '../../utils/getValidationErrors';
+// import logoImg from '../../assets/logo.svg';
+// import Button from '../../components/Button';
+import Input from '../../components/Input';
+import InputLogin from '../../components/InputLogin';
+import { Container, Content, AnimationContainer, Background, Button } from './styles'
 
-                        <input
-                            type="text"
-                            className="input"
-                            name="email"
-                            placeholder="Nome"
-                        />
-                        <input
-                            type="text"
-                            className="input"
-                            name="password"
-                            placeholder="E-mail"
-                        />
-                        <input
-                            type="password"
-                            className="input"
-                            name="password"
-                            placeholder="Senha"
-                        />
-
-                    </fieldset>
-
-
-                    <fieldset>
-                        <button className="button-login" type="button">
-                        Concluir cadastro
-            </button>
-                    </fieldset>
-                </form>
-              
-            </main>
-        </div>
-    );
+interface SignInFormData {
+  email: string;
+  password: string;
 }
 
-export default Signup;
+const SignUp: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+
+//   const { signIn } = useAuth();
+//   const { addToast } = useToast();
+//   const history = useHistory();
+
+//   const handleSubmit = useCallback(
+//     async (data: SignInFormData) => {
+//       try {
+//         formRef.current?.setErrors({});
+
+//         const schema = Yup.object().shape({
+//           email: Yup.string()
+//             .required('Email obrigatório')
+//             .email('Digite um e-mail válido'),
+//           password: Yup.string().required('Senha obrigatória'),
+//         });
+
+//         await schema.validate(data, {
+//           abortEarly: false,
+//         });
+
+//         await signIn({
+//           email: data.email,
+//           password: data.password,
+//         });
+
+//         history.push('/dashboard');
+//       } catch (err) {
+//         if (err instanceof Yup.ValidationError) {
+//           const errors = getValidationErrors(err);
+
+//           formRef.current?.setErrors(errors);
+
+//           return;
+//         }
+//         addToast({
+//           type: 'error',
+//           title: 'Erro na autenticação',
+//           description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
+//         });
+//       }
+//     },
+//     [signIn, addToast, history],
+//   );
+
+const handleSubmit = () => {
+    console.log('')
+}
+
+  return (
+    <Container>
+            <Background />
+      <Content>
+
+        <AnimationContainer>
+
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Cadastro</h1>
+            <span>Preencha dos dados abaixo<br/> para começar.</span>
+            <InputLogin name="name"  placeholder="Nome" />
+
+            <InputLogin name="email"  placeholder="Email" />
+            <InputLogin
+              name="password"
+              type="password"
+              placeholder="Senha"
+            />
+
+            <Button type="submit"> Entrar </Button>
+
+          </Form>
+
+          <Link to="/">
+            <FiArrowLeft />
+            Voltar
+          </Link> 
+        </AnimationContainer>
+      </Content>
+    </Container>
+  );
+};
+export default SignUp;  
