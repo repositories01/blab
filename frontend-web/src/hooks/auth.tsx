@@ -29,8 +29,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem("@GoBarber:token");
-    const user = localStorage.getItem("@GoBarber:user");
+    const token = localStorage.getItem("@Prof:token");
+    const user = localStorage.getItem("@Prof:user");
 
     if (token && user) {
       api.defaults.headers.authorization = `Bearer ${token}`;
@@ -56,8 +56,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem("@GoBarber:token", token);
-    localStorage.setItem("@GoBarber:user", JSON.stringify(user));
+    localStorage.setItem("@Prof:token", token);
+    localStorage.setItem("@Prof:user", JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
