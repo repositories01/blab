@@ -8,26 +8,14 @@ import TeacherForm from "../pages/TeacherForm";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
-// function Routes() {
-//     return(
-//         <BrowserRouter>
-//             <Route path="/" exact component={Landing} />
-//             <Route path="/login" component={Login} />
-//             <Route path="/signup" component={Signup} />
-//             <Route path="/study" component={TeacherList} />
-//             <Route path="/give-classes" component={TeacherForm} />
-//         </BrowserRouter>
-//     );
-// }
-
 const Routes: React.FC = () => (
-    <Switch>
-      <Route path="/" exact component={Landing} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/study" component={TeacherList} />
-      <Route path="/give-classes" component={TeacherForm} />
-    </Switch>
+  <Switch>
+    <Route path="/" exact component={Landing} />
+    <Route path="/login" component={Login} />
+    <Route path="/signup" component={Signup} />
+    <Route path="/study" component={TeacherList} />
+    <Route path="/give-classes" component={TeacherForm} />
+  </Switch>
 );
 
 export default Routes;
