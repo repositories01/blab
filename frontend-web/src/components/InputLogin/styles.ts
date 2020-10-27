@@ -12,8 +12,8 @@ export const Container = styled.div<ContainerProps>`
   border-radius: 10px;
   padding: 16px;
   width: 100%;
-  border: 2px solid #232129;
-  color: #666360;
+  border: 1px solid var(--color-line-in-white);
+  background: var(--color-input-background);
   display: flex;
   align-items: center;
   & + div {
@@ -27,19 +27,19 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isFocused &&
     css`
-      color: #ff9000;
-      border-color: #ff9000;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
     `}
   ${props =>
     props.isFilled &&
     css`
-      color: #ff9000;
+      color: var(--color-primary);
     `}
   input {
     flex: 1;
     background: transparent;
     border: 0;
-    color: #f4ede8;
+    color: var(--color-text-base);
     &::placeholder {
       color: #666360;
     }

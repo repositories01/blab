@@ -12,7 +12,7 @@ import { useAuth } from '../../hooks/auth';
 // import Button from '../../components/Button';
 import Input from '../../components/Input';
 import InputLogin from '../../components/InputLogin';
-import { Container, Content, AnimationContainer, Background } from './style';
+import { Container, Content, AnimationContainer, Background, Button } from './styles';
 
 interface SignInFormData {
   email: string;
@@ -87,7 +87,7 @@ const handleSubmit = () => {
               placeholder="Senha"
             />
 
-            {/* <Button type="submit"> Entrar </Button> */}
+            <Button type="submit"> Entrar </Button>
 
             <Link to="/forgot-password">Esqueci minha senha</Link>
           </Form>
