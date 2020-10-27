@@ -65,15 +65,15 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem("@GoBarber:token");
-    localStorage.removeItem("@GoBarber:user");
+    localStorage.removeItem("@Prof:token");
+    localStorage.removeItem("@Prof:user");
 
     setData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
     (user: User) => {
-      localStorage.setItem("@GoBarber:user", JSON.stringify(user));
+      localStorage.setItem("@Prof:user", JSON.stringify(user));
 
       setData({
         token: data.token,
@@ -86,6 +86,7 @@ const AuthProvider: React.FC = ({ children }) => {
     <AuthContext.Provider
       value={{ user: data.user, signIn, signOut, updateUser }}
     >
+
       {children}
     </AuthContext.Provider>
   );
