@@ -9,13 +9,8 @@ import { useAuth } from "../../hooks/auth";
 import getValidationErrors from "../../utils/getValidationsErros";
 import api from "../../services/api";
 import InputLogin from "../../components/InputLogin";
-import {
-  Container,
-  Content,
-  AnimationContainer,
-  Background,
-  Button,
-} from "./styles";
+import Button from "../../components/Button";
+import { Container, Content, AnimationContainer, Background } from "./styles";
 
 interface SignUpFormData {
   name: string;
@@ -26,11 +21,13 @@ interface SignUpFormData {
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
   const history = useHistory();
 
   const handleSubmit = useCallback(async (data: SignUpFormData) => {
     try {
+      setLoading(true);
       formRef.current?.setErrors({});
 
       const schema = Yup.object().shape({
@@ -44,12 +41,12 @@ const SignUp: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-
+      console.log(data);
       await api.post("/signup", data);
 
       setIsAuth(true);
-
       history.push("/give-classes");
+
     } catch (err) {
       console.log(err);
       if (err instanceof Yup.ValidationError) {
@@ -58,8 +55,10 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors(errors);
         return;
       }
+    } finally {
+      setLoading(false);
     }
-  }, []);
+  }, [history]);
 
   return (
     <Container>
@@ -77,7 +76,10 @@ const SignUp: React.FC = () => {
             <InputLogin name="email" placeholder="Email" />
             <InputLogin name="password" type="password" placeholder="Senha" />
 
-            <Button type="submit"> Entrar </Button>
+            <Button loading={loading} type="submit">
+              {" "}
+              Cadastrar{" "}
+            </Button>
           </Form>
 
           <Link to="/">
