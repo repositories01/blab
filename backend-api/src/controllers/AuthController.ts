@@ -6,15 +6,15 @@ import * as jwt from '../utils/jwt'
 
 export default class AuthController {
 
-  async index(req: Request, res: Response){
+  async index(req: Request, res: Response) {
     const users = await db("accounts")
     return res.json(users);
   }
 
 
   async login(req: Request, res: Response) {
-          
-    const [,hash] = req.headers.authorization?.split(' ');
+
+    const [, hash] = req.headers.authorization?.split(' ');
     const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
     const passCrypto = crypto.createHash("md5").update(password).digest("hex")
 
@@ -49,7 +49,7 @@ export default class AuthController {
     };
 
     const user = await db("accounts").where({ email: email });
-
+    console.log(userObj)
     try {
       if (user.length == 0) {
         await db("accounts").insert(userObj);
@@ -59,7 +59,7 @@ export default class AuthController {
 
         const token = jwt.sign({ user: userId })
 
-        res.status(201).json({ userId, token });
+        return res.status(201).json({ userId, token });
 
       }
       res.status(400).json({ erro: "This email already exists" });
