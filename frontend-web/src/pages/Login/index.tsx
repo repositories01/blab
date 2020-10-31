@@ -26,7 +26,7 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Background />
-      <Content>
+      {/* <Content>
         <AnimationContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Fazer Login</h1>
@@ -44,7 +44,7 @@ const SignIn: React.FC = () => {
             Criar conta
           </Link>
         </AnimationContainer>
-      </Content>
+      </Content> */}
     </Container>
   );
 };
