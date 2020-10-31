@@ -78,8 +78,8 @@ export const AnimationContainer = styled.div`
 
 export const Background = styled.div`
   flex: 1;
-  background-size: cover;
-  background: url(${signInBackgrondImg}) no-repeat center ;
+  background-size: auto;
+  background: url(${signInBackgrondImg}) no-repeat  ;
   `;
 
   export const Button = styled.button`
