@@ -186,15 +186,16 @@ function TeacherForm() {
                       setScheduleItemValue(index, "to", e.target.value)
                     }
                   />
-                  {index === 0 ? null : (
-                    <button
-                      onClick={handleDeleteSchedule}
-                      className="delete-schedule"
-                    >
-                      <FiMinusCircle />
-                    </button>
-                  )}
+                   {index === 0 ? null : (
+                  <button
+                    onClick={handleDeleteSchedule}
+                    className="delete-schedule"
+                  >
+                    <FiMinusCircle />
+                  </button>
+                )}
                 </div>
+               
               );
             })}
           </fieldset>

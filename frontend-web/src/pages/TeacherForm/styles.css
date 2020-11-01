@@ -28,10 +28,12 @@
   
 }
 #page-teacher-form main .schedule-item .delete-schedule{
-    background-color: red;
-   
-  
+   background: transparent;
+   border: 0;
 }
+#page-teacher-form main .schedule-item .delete-schedule svg{
+  height: 20px;
+ }
 
 #page-teacher-form main fieldset legend {
     font: 700 2.4rem Archivo;
