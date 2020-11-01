@@ -20,10 +20,17 @@
 #page-teacher-form main fieldset {
     border: 0;
     padding: 0 2.4rem;
+    margin-top: 6rem;    
 }
 
-#page-teacher-form main fieldset + fieldset {
-    margin-top: 6.4rem;
+#page-teacher-form main .schedule-item {
+    margin-top: 2rem;
+  
+}
+#page-teacher-form main .schedule-item .delete-schedule{
+    background-color: red;
+   
+  
 }
 
 #page-teacher-form main fieldset legend {
@@ -112,7 +119,7 @@
 
     #page-teacher-form main .schedule-item {
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         column-gap: 1.6rem;
     }
 

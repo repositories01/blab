@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 import Input from "../../components/Input";
@@ -7,6 +7,7 @@ import Textarea from "../../components/Textarea";
 import Select from "../../components/Select";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
+import { FiMinusCircle } from "react-icons/fi";
 
 import api from "../../services/api";
 
@@ -70,6 +71,9 @@ function TeacherForm() {
       });
   }
 
+  const handleDeleteSchedule = useCallback(() => {
+    console.log('nada')
+  }, []);
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
@@ -90,14 +94,7 @@ function TeacherForm() {
                 setName(e.target.value);
               }}
             />
-            {/* <Input
-              name="avatar"
-              label="Avatar"
-              value={avatar}
-              onChange={(e) => {
-                setAvatar(e.target.value);
-              }}
-            /> */}
+
             <Input
               name="whatsapp"
               label="Whatsapp"
@@ -190,9 +187,11 @@ function TeacherForm() {
                     }
                   />
                   {index === 0 ? null : (
-                    <button className="delete-schedule">
-                      ca
-                     
+                    <button
+                      onClick={handleDeleteSchedule}
+                      className="delete-schedule"
+                    >
+                      <FiMinusCircle />
                     </button>
                   )}
                 </div>
