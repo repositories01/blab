@@ -71,8 +71,8 @@ function TeacherForm() {
       });
   }
 
-  const handleDeleteSchedule = useCallback(() => {
-    console.log('nada')
+  const handleDeleteSchedule = useCallback((index) => {
+    console.log(index);
   }, []);
   return (
     <div id="page-teacher-form" className="container">
@@ -186,16 +186,16 @@ function TeacherForm() {
                       setScheduleItemValue(index, "to", e.target.value)
                     }
                   />
-                   {index === 0 ? null : (
-                  <button
-                    onClick={handleDeleteSchedule}
-                    className="delete-schedule"
-                  >
-                    <FiMinusCircle />
-                  </button>
-                )}
+                  {index === 0 ? null : (
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteSchedule(index)}
+                      className="delete-schedule"
+                    >
+                      <FiMinusCircle />
+                    </button>
+                  )}
                 </div>
-               
               );
             })}
           </fieldset>
@@ -203,8 +203,8 @@ function TeacherForm() {
           <footer>
             <p>
               <img src={warningIcon} alt="Aviso importante" />
-              Importante! <br />
-              Preencha todos os dados
+              Important! <br />
+              Fill in all fields
             </p>
 
             <button type="submit">Salvar cadastro</button>
