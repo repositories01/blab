@@ -73,31 +73,31 @@ function TeacherForm() {
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
-        title="Que incrível que você quer dar aulas."
-        description="O primeiro passo é preencher esse formulário de inscrição"
+        title="Create your schedule."
+        description="First you need to fill the form"
       />
 
       <main>
         <form onSubmit={handleCreateClass}>
           <fieldset>
-            <legend>Seus dados</legend>
+            <legend>About you</legend>
 
             <Input
               name="name"
-              label="Nome completo"
+              label="Full Name"
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
               }}
             />
-            <Input
+            {/* <Input
               name="avatar"
               label="Avatar"
               value={avatar}
               onChange={(e) => {
                 setAvatar(e.target.value);
               }}
-            />
+            /> */}
             <Input
               name="whatsapp"
               label="Whatsapp"
@@ -108,7 +108,7 @@ function TeacherForm() {
             />
             <Textarea
               name="bio"
-              label="Biografia"
+              label="Favorite subjects"
               value={bio}
               onChange={(e) => {
                 setBio(e.target.value);
@@ -117,31 +117,25 @@ function TeacherForm() {
           </fieldset>
 
           <fieldset>
-            <legend>Sobre a aula</legend>
+            <legend>English level </legend>
 
             <Select
               name="subject"
-              label="Matéria"
+              label="Level"
               value={subject}
               onChange={(e) => {
                 setSubject(e.target.value);
               }}
               options={[
-                { value: "Artes", label: "Artes" },
-                { value: "Biologia", label: "Biologia" },
-                { value: "Ciências", label: "Ciências" },
-                { value: "Educação física", label: "Educação física" },
-                { value: "Física", label: "Física" },
-                { value: "Geografia", label: "Geografia" },
-                { value: "História", label: "História" },
-                { value: "Matemática", label: "Matemática" },
-                { value: "Português", label: "Português" },
-                { value: "Química", label: "Química" },
+                { value: "Beginner", label: "Beginner" },
+                { value: "Intermediate", label: "Intermediate" },
+                { value: "Advanced", label: "Advanced" },
+                { value: "Native", label: "Native" },
               ]}
             />
             <Input
               name="cost"
-              label="Custo da sua hora por aula"
+              label="Your native language"
               value={cost}
               onChange={(e) => {
                 setCost(e.target.value);
@@ -151,9 +145,9 @@ function TeacherForm() {
 
           <fieldset>
             <legend>
-              Horários disponíveis
+              Available times
               <button type="button" onClick={addNewScheduleItem}>
-                + Novo horário
+                + New Time
               </button>
             </legend>
 
@@ -162,24 +156,24 @@ function TeacherForm() {
                 <div key={scheduleItem.week_day} className="schedule-item">
                   <Select
                     name="week_day"
-                    label="Dia da semana"
+                    label="Week Day"
                     value={scheduleItem.week_day}
                     onChange={(e) =>
                       setScheduleItemValue(index, "week_day", e.target.value)
                     }
                     options={[
-                      { value: "0", label: "Domingo" },
-                      { value: "1", label: "Segunda-feira" },
-                      { value: "2", label: "Terça-feira" },
-                      { value: "3", label: "Quarta-feira" },
-                      { value: "4", label: "Quinta-feira" },
-                      { value: "5", label: "Sexta-feira" },
-                      { value: "6", label: "Sábado" },
+                      { value: "0", label: "Sunday" },
+                      { value: "1", label: "Monday" },
+                      { value: "2", label: "Tuesday" },
+                      { value: "3", label: "Wednesday" },
+                      { value: "4", label: "Thursday" },
+                      { value: "5", label: "Friday" },
+                      { value: "6", label: "Saturday" },
                     ]}
                   />
                   <Input
                     name="from"
-                    label="Das"
+                    label="From"
                     type="time"
                     value={scheduleItem.from}
                     onChange={(e) =>
@@ -188,13 +182,19 @@ function TeacherForm() {
                   />
                   <Input
                     name="to"
-                    label="Até"
+                    label="To"
                     type="time"
                     value={scheduleItem.to}
                     onChange={(e) =>
                       setScheduleItemValue(index, "to", e.target.value)
                     }
                   />
+                  {index === 0 ? null : (
+                    <button className="delete-schedule">
+                      ca
+                     
+                    </button>
+                  )}
                 </div>
               );
             })}
