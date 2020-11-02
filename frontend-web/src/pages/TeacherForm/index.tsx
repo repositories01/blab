@@ -8,7 +8,7 @@ import Select from "../../components/Select";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
 import { FiMinusCircle } from "react-icons/fi";
-import { Profile,Avatar } from "./style";
+import { Profile, Avatar } from "./style";
 
 import api from "../../services/api";
 
@@ -89,32 +89,21 @@ function TeacherForm() {
           <fieldset>
             <legend>About you</legend>
             <Profile>
-             <Avatar>
-              <img src="https://via.placeholder.com/150" alt=""/>
-              <span>Thiago Medina</span>
-             </Avatar>
+              <Avatar>
+                <img src="https://via.placeholder.com/150" alt="" />
+                <span>Thiago Medina</span>
+              </Avatar>
 
-            <Input
-              name="whatsapp"
-              label="Whatsapp"
-              placeholder="(   ) _  _ _ _ _   _ _ _ _ "
-              value={whatsapp}
-              onChange={(e) => {
-                setWhatsapp(e.target.value);
-              }}
-            />
+              <Input
+                name="whatsapp"
+                label="Whatsapp"
+                placeholder="(   ) _  _ _ _ _   _ _ _ _ "
+                value={whatsapp}
+                onChange={(e) => {
+                  setWhatsapp(e.target.value);
+                }}
+              />
             </Profile>
-            {/* <Input
-              name="name"
-              label="Full Name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            /> */}
-
-          
-
 
             <Textarea
               name="bio"
@@ -137,10 +126,12 @@ function TeacherForm() {
                 setSubject(e.target.value);
               }}
               options={[
-                { value: "Beginner", label: "Beginner" },
-                { value: "Intermediate", label: "Intermediate" },
-                { value: "Advanced", label: "Advanced" },
-                { value: "Native", label: "Native" },
+                { value: "A1", label: "A1" },
+                { value: "A2", label: "A2" },
+                { value: "B1", label: "B1" },
+                { value: "B2", label: "B2" },
+                { value: "C1", label: "C1" },
+                { value: "C2", label: "C2" },
               ]}
             />
             <Input

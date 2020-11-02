@@ -5,7 +5,6 @@ export const Profile = styled.div`
 display: flex;
 margin-bottom: 20px;
 justify-content: flex-start;
-/* justify-content: space-between; */
 
 @media(max-width: 800px) {
     flex-direction: column;
