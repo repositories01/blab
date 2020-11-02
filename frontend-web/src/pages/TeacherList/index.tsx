@@ -44,29 +44,8 @@ function TeacherList() {
 
   return (
     <div id="page-teacher-list" className="container">
-      <PageHeader title="These are the chatters crazy to talk.">
+      <PageHeader title="These are the available teachers.">
         <form id="search-teachers" onSubmit={searchTeachers}>
-          {/* <Select
-            name="subject"
-            label="Matéria"
-            value={subject}
-            onChange={(e) => {
-              setSubject(e.target.value);
-            }}
-            options={[
-              { value: "Artes", label: "Artes" },
-              { value: "Biologia", label: "Biologia" },
-              { value: "Ciências", label: "Ciências" },
-              { value: "Educação física", label: "Educação física" },
-              { value: "Física", label: "Física" },
-              { value: "Geografia", label: "Geografia" },
-              { value: "História", label: "História" },
-              { value: "Matemática", label: "Matemática" },
-              { value: "Português", label: "Português" },
-              { value: "Química", label: "Química" },
-              { value: "Inglês", label: "Inglês" },
-            ]}
-          /> */}
           <Select
             name="week_day"
             label="Week Day"
