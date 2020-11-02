@@ -8,6 +8,7 @@ import Select from "../../components/Select";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
 import { FiMinusCircle } from "react-icons/fi";
+import { Profile,Avatar } from "./style";
 
 import api from "../../services/api";
 
@@ -72,7 +73,9 @@ function TeacherForm() {
   }
 
   const handleDeleteSchedule = useCallback((index) => {
-    console.log(index);
+    const result = scheduleItems.filter((e, i) => i != index);
+    // setScheduleItems(result);
+    console.log(result);
   }, []);
   return (
     <div id="page-teacher-form" className="container">
@@ -85,27 +88,37 @@ function TeacherForm() {
         <form onSubmit={handleCreateClass}>
           <fieldset>
             <legend>About you</legend>
+            <Profile>
+             <Avatar>
+              <img src="https://via.placeholder.com/150" alt=""/>
+              <span>Thiago Medina</span>
+             </Avatar>
 
             <Input
+              name="whatsapp"
+              label="Whatsapp"
+              placeholder="(   ) _  _ _ _ _   _ _ _ _ "
+              value={whatsapp}
+              onChange={(e) => {
+                setWhatsapp(e.target.value);
+              }}
+            />
+            </Profile>
+            {/* <Input
               name="name"
               label="Full Name"
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
               }}
-            />
+            /> */}
 
-            <Input
-              name="whatsapp"
-              label="Whatsapp"
-              value={whatsapp}
-              onChange={(e) => {
-                setWhatsapp(e.target.value);
-              }}
-            />
+          
+
+
             <Textarea
               name="bio"
-              label="Favorite subjects"
+              label="Bio"
               value={bio}
               onChange={(e) => {
                 setBio(e.target.value);
@@ -114,7 +127,7 @@ function TeacherForm() {
           </fieldset>
 
           <fieldset>
-            <legend>English level </legend>
+            <legend>English level</legend>
 
             <Select
               name="subject"
@@ -132,7 +145,7 @@ function TeacherForm() {
             />
             <Input
               name="cost"
-              label="Your native language"
+              label="Price"
               value={cost}
               onChange={(e) => {
                 setCost(e.target.value);
@@ -207,7 +220,7 @@ function TeacherForm() {
               Fill in all fields
             </p>
 
-            <button type="submit">Salvar cadastro</button>
+            <button type="submit">Save</button>
           </footer>
         </form>
       </main>
