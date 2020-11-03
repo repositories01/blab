@@ -8,11 +8,11 @@ import './styles.css'
 
 interface PageHeaderProps {
     title: string;
-    path?: string | null;
+    to: string
     description?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({description, path, title, children}) => {
+const PageHeader: React.FC<PageHeaderProps> = ({description, to, title, children}) => {
     return (
         <header className="page-header">
             <div className="top-bar-container">
