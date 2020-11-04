@@ -80,6 +80,7 @@ function TeacherForm() {
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
+        to="/study"
         title="Create your schedule."
         description="First you need to fill the form"
       />

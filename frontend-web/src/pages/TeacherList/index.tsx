@@ -44,7 +44,7 @@ function TeacherList() {
 
   return (
     <div id="page-teacher-list" className="container">
-      <PageHeader title="These are the available teachers.">
+      <PageHeader linkName="Give classes" to="/give-classes"title="These are the available teachers.">
         <form id="search-teachers" onSubmit={searchTeachers}>
           <Select
             name="week_day"
