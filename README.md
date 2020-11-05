@@ -20,7 +20,7 @@
 
 ## 💭 About
 
-Prof is an application that have goal to connect students and teachers, within it is provided a space for teachers to record their availability during the week, subjects they teach, phone(WhatsApp) and also the cost of their hour / class. For the student it is possible to find tutors to contact them via WhatsApp and also save in their favorites.
+Blab is an application that have goal to connect students and teachers, within it is provided a space for teachers to record their availability during the week, subjects they teach, phone(WhatsApp) and also the cost of their hour / class. For the student it is possible to find tutors to contact them via WhatsApp and also save in their favorites.
 
 
 ## 👨‍💻 Stack technology used
