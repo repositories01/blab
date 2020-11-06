@@ -28,7 +28,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         </Link>
 
         <img src={logoImg} alt="Proffy" />
-        <Link to={`${to}`}>
+        <Link className="link-name" to={`${to}`}>
           <span>{linkName}</span>
         </Link>
       </div>
