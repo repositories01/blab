@@ -29,8 +29,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem("@Prof:token");
-    const user = localStorage.getItem("@Prof:user");
+    const token = localStorage.getItem("@Blab:token");
+    const user = localStorage.getItem("@Blab:user");
 
     if (token && user) {
       api.defaults.headers.authorization = `Bearer ${token}`;
@@ -56,8 +56,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem("@Prof:token", token);
-    localStorage.setItem("@Prof:user", JSON.stringify(user));
+    localStorage.setItem("@Blab:token", token);
+    localStorage.setItem("@Blab:user", JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
@@ -65,15 +65,15 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem("@Prof:token");
-    localStorage.removeItem("@Prof:user");
+    localStorage.removeItem("@Blab:token");
+    localStorage.removeItem("@Blab:user");
 
     setData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
     (user: User) => {
-      localStorage.setItem("@Prof:user", JSON.stringify(user));
+      localStorage.setItem("@Blab:user", JSON.stringify(user));
 
       setData({
         token: data.token,
