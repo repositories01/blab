@@ -1,8 +1,6 @@
 
-<h1 align="center"> ![Captura de tela de 2020-11-05 22-42-15](https://user-images.githubusercontent.com/51326247/98315995-4d85f400-1fb8-11eb-8712-2a32dc29078a.png)
-</h1>
-    <br/>
-  
+![Captura de tela de 2020-11-05 22-42-15](https://user-images.githubusercontent.com/51326247/98315995-4d85f400-1fb8-11eb-8712-2a32dc29078a.png)
+
 
 <p align="center">
   <img alt="Develop by" src="https://img.shields.io/badge/Develop%20by-Thiago%20Medina-blue?style=flat&logo=Awesome-Lists">
