@@ -48,7 +48,7 @@ Primeiro clone o repositório em seu computador, por meio do terminal utilizando
 
 ```sh
   # Clone o repositório
-  $ git clone git@github.com:thiagomedina/prof.git
+  $ git clone git@github.com:thiagomedina/blab.git
   # Entre na pasta raiz da aplicação
   $ cd tutorando
 ```
