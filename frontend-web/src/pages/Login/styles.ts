@@ -78,11 +78,13 @@ export const AnimationContainer = styled.div`
 
 export const Background = styled.div`
   flex: 1;
-  background-size: auto;
-  background: url(${signInBackgrondImg}) no-repeat  ;
-  `;
+ background-color: var(--color-primary);
+ 
+ `;
+ /* background: url(${signInBackgrondImg})  no-repeat  ;   */
+/* background-size: auto; */
 
-  export const Button = styled.button`
+export const Button = styled.button`
   width: 100%;
   height: 5.6rem;
   background: var(--color-secundary);

@@ -7,8 +7,9 @@ import { Link, useHistory } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 import Button from "../../components/Button";
-import Input from "../../components/Input";
 import InputLogin from "../../components/InputLogin";
+import getValidationErrors from "../../utils/getValidationsErros";
+
 import { Container, Content, AnimationContainer, Background } from "./styles";
 
 interface SignInFormData {
@@ -18,10 +19,43 @@ interface SignInFormData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const { signIn } = useAuth();
+  const history = useHistory();
 
-  const handleSubmit = () => {
-    console.log("");
-  };
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required("Email obrigatório")
+            .email("Digite um e-mail válido"),
+          password: Yup.string().required("Senha obrigatória"),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        await signIn({
+          email: data.email,
+          password: data.password,
+        });
+
+        history.push("/dashboard");
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+
+          formRef.current?.setErrors(errors);
+
+          return;
+        }
+      }
+    },
+    [signIn, history]
+  );
 
   return (
     <Container>
@@ -35,8 +69,6 @@ const SignIn: React.FC = () => {
             <InputLogin name="password" type="password" placeholder="Senha" />
 
             <Button type="submit"> Entrar </Button>
-
-            <Link to="/forgot-password">Esqueci minha senha</Link>
           </Form>
 
           <Link to="/signup">
