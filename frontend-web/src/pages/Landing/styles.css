@@ -11,11 +11,14 @@
 }
 
 .logo-container img {
-    height: 10rem;
+    height: 8rem;
 }
 
 .hero-image {
-    width: 100%;
+    /* width: 100%; */
+    width: 25rem;
+    height: 23rem;
+    margin-left: 55px;
 }
 
 .logo-container {
@@ -125,6 +128,8 @@
     .hero-image {
         grid-area: hero;
         justify-self: end;
+        width: 45rem;
+        height: 45rem;
     }
 
     .buttons-container {
@@ -139,5 +144,6 @@
     .total-connections {
         grid-area: total;
         justify-self: end;
+        margin-top: 50px;
     }
 }
