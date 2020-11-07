@@ -99,7 +99,8 @@ const FadeInAnimation = keyframes`
 export const Background = styled.div<ContainerProps>`
   flex: 1;
   background-size: cover;
-  background: url(${signInBackgrondImg}) no-repeat ;
+  /* background: url(${signInBackgrondImg}) no-repeat ; */
+  background: var(--color-primary)
   
 
 

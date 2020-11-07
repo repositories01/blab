@@ -44,7 +44,7 @@ const SignUp: React.FC = () => {
       console.log(data);
       await api.post("/signup", data);
 
-      setIsAuth(true);
+      // setIsAuth(true);
       history.push("/give-classes");
 
     } catch (err) {
