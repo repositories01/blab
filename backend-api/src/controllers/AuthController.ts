@@ -52,15 +52,17 @@ export default class AuthController {
     console.log(userObj)
     try {
       if (user.length == 0) {
-        // await db("accounts").insert(userObj);
-        // const userId: number = await db("accounts")
-        //   .where({ email: email })
-        //   .select("id");
+        await db("accounts").insert(userObj);
+        const userId: number = await db("accounts")
+          .where({ email: email })
+          .select("id");
 
-        // const token = jwt.sign({ user: userId })
+        const token = jwt.sign({ user: userId })
 
-        // return res.status(201).json({ userId, token });
-        return res.status(201).json('ok');
+
+
+        return res.status(201).json({ userId, token });
+
 
 
       }

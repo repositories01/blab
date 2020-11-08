@@ -14,6 +14,7 @@ interface AuthState {
 }
 
 interface SignInCredentials {
+  name?: string;
   email: string;
   password: string;
 }
@@ -22,6 +23,7 @@ interface AuthContextData {
   user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
+  signUp(credentials: SignInCredentials): Promise<void>;
   updateUser(user: User): void;
 }
 
@@ -64,6 +66,19 @@ const AuthProvider: React.FC = ({ children }) => {
     setData({ token, user });
   }, []);
 
+  const signUp = useCallback(async ({ name, email, password }) => {
+
+     const response =  await api.post("/signup", {name, email, password});
+     console.log(response)
+    // const { token, user } = response.data;
+    // localStorage.setItem("@Blab:token", token);
+    // localStorage.setItem("@Blab:user", JSON.stringify(user));
+    // api.defaults.headers.authorization = `Bearer ${token}`;
+    // setData({ token, user });
+
+   
+  }, []);
+
   const signOut = useCallback(() => {
     localStorage.removeItem("@Blab:token");
     localStorage.removeItem("@Blab:user");
@@ -84,9 +99,8 @@ const AuthProvider: React.FC = ({ children }) => {
   );
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{ user: data.user, signIn, signUp, signOut, updateUser }}
     >
-
       {children}
     </AuthContext.Provider>
   );

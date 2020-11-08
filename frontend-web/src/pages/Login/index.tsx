@@ -43,7 +43,7 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
 
-        history.push("/dashboard");
+        history.push("/give-classes");
       } catch (err) {
         console.log(err)
         if (err instanceof Yup.ValidationError) {

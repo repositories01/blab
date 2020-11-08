@@ -22,7 +22,7 @@ const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signIn } = useAuth();
+  const { signUp } = useAuth();
   const history = useHistory();
 
   const handleSubmit = useCallback(async (data: SignUpFormData) => {
@@ -41,8 +41,13 @@ const SignUp: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      console.log(data);
-      await api.post("/signup", data);
+     
+      // await api.post("/signup", data); 
+      await signUp({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
 
       // setIsAuth(true);
       history.push("/give-classes");
