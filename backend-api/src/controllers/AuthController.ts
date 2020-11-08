@@ -3,6 +3,11 @@ import crypto from "crypto";
 import db from "../database/connection";
 import * as jwt from '../utils/jwt'
 
+interface IUser {
+  name: string,
+  email: string,
+  id: number
+}
 
 export default class AuthController {
 
@@ -19,14 +24,16 @@ export default class AuthController {
     const passCrypto = crypto.createHash("md5").update(password).digest("hex")
 
     try {
+      
+      const user: IUser[] = await db("accounts")
+      .where({ email: email, password: passCrypto })
+      .select('name', 'email', 'id')
+   
+        
 
-      const userId: number = await db("accounts")
-        .where({ email: email, password: passCrypto })
-        .select("id");
-
-      if (userId != 0) {
-        const token: string = jwt.sign({ user: userId })
-        res.status(200).json({ id: userId, token: token });
+      if (user.length != 0) {
+        const token: string = jwt.sign({ user: user[0].id })
+        res.status(200).json({ user, token: token });
 
       }
 
@@ -49,7 +56,7 @@ export default class AuthController {
     };
 
     const user = await db("accounts").where({ email: email });
-    console.log(userObj)
+
     try {
       if (user.length == 0) {
         await db("accounts").insert(userObj);
@@ -59,12 +66,7 @@ export default class AuthController {
 
         const token = jwt.sign({ user: userId })
 
-
-
         return res.status(201).json({ userId, token });
-
-
-
       }
       res.status(400).json({ erro: "This email already exists" });
 

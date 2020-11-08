@@ -2,10 +2,10 @@ import React, { createContext, useCallback, useState, useContext } from "react";
 import api from "../services/api";
 
 interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
-  avatar_url: string;
+  // avatar_url: string;
 }
 
 interface AuthState {
@@ -44,20 +44,16 @@ const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ email, password }) => {
-    // const response = await api.post('login', {
-    //   email,
-    //   password,
-    // });
-
     const response = await api.get("login", {
       auth: {
         username: email,
         password,
       },
     });
-
+    
     const { token, user } = response.data;
-
+    
+    console.log( token, user )
     localStorage.setItem("@Blab:token", token);
     localStorage.setItem("@Blab:user", JSON.stringify(user));
 
@@ -67,16 +63,12 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signUp = useCallback(async ({ name, email, password }) => {
-
-     const response =  await api.post("/signup", {name, email, password});
-     console.log(response)
+    const response = await api.post("/signup", { name, email, password });
     // const { token, user } = response.data;
     // localStorage.setItem("@Blab:token", token);
     // localStorage.setItem("@Blab:user", JSON.stringify(user));
     // api.defaults.headers.authorization = `Bearer ${token}`;
     // setData({ token, user });
-
-   
   }, []);
 
   const signOut = useCallback(() => {
