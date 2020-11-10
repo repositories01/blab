@@ -54,8 +54,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const { token, user } = response.data;
     
     console.log( token, user )
-    localStorage.setItem("@Blab:token", token);
-    localStorage.setItem("@Blab:user", JSON.stringify(user));
+    // localStorage.setItem("@Blab:token", token);
+    // localStorage.setItem("@Blab:user", JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
