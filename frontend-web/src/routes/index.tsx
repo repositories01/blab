@@ -15,6 +15,7 @@ const Routes: React.FC = () => (
     <Route path="/signup" component={Signup} />
     <Route path="/study" component={TeacherList} />
     <Route path="/give-classes" component={TeacherForm} isPrivate />
+
   </Switch>
 );
 

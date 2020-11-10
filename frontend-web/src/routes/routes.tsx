@@ -19,21 +19,24 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { user } = useAuth();
- 
+
   return (
     <ReactDOMRoute
       {...rest}
       render={() => {
-        console.log(isPrivate, !!user)
-        return isPrivate === !!user ? (
-          <Component />
-        ) : (
-          <Redirect
-            to={{
-              pathname: isPrivate ? "/login" : "/",
-            }}
-          />
-        );
+        {
+          console.log(isPrivate, !!user);
+        }
+        return !!user ? <Component /> : <Redirect to="/login" />;
+        // return isPrivate === !!user ? (
+        //   <Component />
+        // ) : (
+        //   <Redirect
+        //     to={{
+        //       pathname: isPrivate ? "/login" : "",
+        //     }}
+        //   />
+        // );
       }}
     />
   );
