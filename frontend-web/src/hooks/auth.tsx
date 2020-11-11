@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useState, useContext } from "react";
 import api from "../services/api";
 
-interface User {
+export interface User {
   id: number;
   name: string;
   email: string;
@@ -20,12 +20,13 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: User;
+  user:User;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
   signUp(credentials: SignInCredentials): Promise<void>;
   updateUser(user: User): void;
 }
+
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -54,8 +55,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const { token, user } = response.data;
     
     console.log( token, user )
-    // localStorage.setItem("@Blab:token", token);
-    // localStorage.setItem("@Blab:user", JSON.stringify(user));
+    localStorage.setItem("@Blab:token", token);
+    localStorage.setItem("@Blab:user", JSON.stringify(user));
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
