@@ -37,7 +37,13 @@
       "src/components/**/*.tsx",
       "src/hooks/**/*.ts",
       "!src/hooks/index.tsx"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 90,
+        "statements": 90
+      }
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
