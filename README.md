@@ -50,14 +50,14 @@ Primeiro clone o repositório em seu computador, por meio do terminal utilizando
   # Clone o repositório
   $ git clone git@github.com:thiagomedina/blab.git
   # Entre na pasta raiz da aplicação
-  $ cd tutorando
+  $ cd blab
 ```
 
 2. Iniciando o Backend
 
 ```sh
   # Entre na pasta do backend
-  $ cd server
+  $ cd backend-api
   # Instale as dependências da aplicação
   $ yarn # ou npm install
   # Crie o banco de dados da aplicação
@@ -70,7 +70,7 @@ Primeiro clone o repositório em seu computador, por meio do terminal utilizando
 
 ```sh
   # Entre na pasta da aplicação web
-  $ cd web
+  $ cd frontend-web
   # Instale as dependências da aplicação
   $ yarn # ou npm install
   # Inicie a aplicação web
