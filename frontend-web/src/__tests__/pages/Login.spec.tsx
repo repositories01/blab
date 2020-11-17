@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Login from "../../pages/Login";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, wait } from "@testing-library/react";
 
 const mockedHistoryPush = jest.fn();
 jest.mock("react-router-dom", () => {
@@ -12,8 +12,18 @@ jest.mock("react-router-dom", () => {
     Link: ({ children }: { children: React.ReactNode }) => children,
   };
 });
-describe("Landing page", () => {
-  it(" should be able to login", () => {
+
+jest.mock('../../hooks/auth.tsx', () => {
+  return{
+    useAuth: () => ({
+      signIn: jest.fn(),
+    })
+  }
+})
+
+
+describe("Test login", () => {
+  it(" should  be able to login ", async() => {
     const { getByPlaceholderText, getByText } = render(<Login />);
 
     const emailField = getByPlaceholderText("Email");
@@ -23,6 +33,10 @@ describe("Landing page", () => {
     fireEvent.change(emailField, { target: { value: "nome@email.com" } });
     fireEvent.change(passwordField, { target: { value: "1212121" } });
     fireEvent.click(buttonElement);
-    expect(mockedHistoryPush).toHaveBeenCalledWith("/give-classes");
+
+    await wait(() =>{
+      expect(mockedHistoryPush).toHaveBeenCalledWith("/give-classes");
+    }) 
+    
   });
 });
