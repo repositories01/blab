@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Login from "../../pages/Login";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 jest.mock("react-router-dom", () => {
   return {
