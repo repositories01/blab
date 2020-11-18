@@ -4,6 +4,8 @@ import Login from "../../pages/Login";
 import { render, fireEvent, wait } from "@testing-library/react";
 
 const mockedHistoryPush = jest.fn();
+const mockedSignIn = jest.fn();
+
 jest.mock("react-router-dom", () => {
   return {
     useHistory: () => ({
@@ -16,13 +18,13 @@ jest.mock("react-router-dom", () => {
 jest.mock("../../hooks/auth.tsx", () => {
   return {
     useAuth: () => ({
-      signIn: jest.fn(),
+      signIn: mockedSignIn,
     }),
   };
 });
 
 describe("Test login", () => {
-  beforeEach(() =>  mockedHistoryPush.mockClear());
+  beforeEach(() => mockedHistoryPush.mockClear());
   it(" should  be able to login ", async () => {
     const { getByPlaceholderText, getByText } = render(<Login />);
 
@@ -52,7 +54,7 @@ describe("Test login", () => {
     fireEvent.click(buttonElement);
 
     await wait(() => {
-      expect(mockedHistoryPush).not.toHaveBeenCalledWith("/give-classes");
+      expect(mockedHistoryPush).not.toHaveBeenCalled();
     });
   });
 });
