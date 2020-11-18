@@ -1,5 +1,4 @@
 import React, { Children } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import Login from "../../pages/Login";
 import { render, fireEvent, wait } from "@testing-library/react";
 

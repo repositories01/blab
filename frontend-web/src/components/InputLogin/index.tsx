@@ -40,7 +40,7 @@ import React, {
     }, [fieldName, registerField]);
   
     return (
-      <Container style={containerStyle} isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+      <Container data-testid="input-container" style={containerStyle} isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
         <input
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}

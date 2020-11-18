@@ -5,12 +5,12 @@ import { render } from "@testing-library/react";
 
 describe("Landing page", () => {
   it(" should be able return the landing page", () => {
-    const { debug } = render(
+    const landingPage = render(
       <Router>
         <Landing />
       </Router>
     );
 
-    debug()
+    expect(landingPage).toBeTruthy()
   });
 });
