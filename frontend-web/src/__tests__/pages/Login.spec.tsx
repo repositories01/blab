@@ -13,17 +13,17 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-jest.mock('../../hooks/auth.tsx', () => {
-  return{
+jest.mock("../../hooks/auth.tsx", () => {
+  return {
     useAuth: () => ({
       signIn: jest.fn(),
-    })
-  }
-})
-
+    }),
+  };
+});
 
 describe("Test login", () => {
-  it(" should  be able to login ", async() => {
+  beforeEach(() =>  mockedHistoryPush.mockClear());
+  it(" should  be able to login ", async () => {
     const { getByPlaceholderText, getByText } = render(<Login />);
 
     const emailField = getByPlaceholderText("Email");
@@ -34,9 +34,25 @@ describe("Test login", () => {
     fireEvent.change(passwordField, { target: { value: "1212121" } });
     fireEvent.click(buttonElement);
 
-    await wait(() =>{
+    await wait(() => {
       expect(mockedHistoryPush).toHaveBeenCalledWith("/give-classes");
-    }) 
-    
+    });
+  });
+
+  it(" should not be able to login with invalid credentials ", async () => {
+    const { getByPlaceholderText, getByText } = render(<Login />);
+
+    const emailField = getByPlaceholderText("Email");
+    const passwordField = getByPlaceholderText("Senha");
+    const buttonElement = getByText("Entrar");
+
+    fireEvent.change(emailField, { target: { value: "not-email-valid" } });
+    fireEvent.change(passwordField, { target: { value: "1212121" } });
+
+    fireEvent.click(buttonElement);
+
+    await wait(() => {
+      expect(mockedHistoryPush).not.toHaveBeenCalledWith("/give-classes");
+    });
   });
 });
