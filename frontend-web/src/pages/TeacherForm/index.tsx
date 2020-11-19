@@ -54,23 +54,25 @@ function TeacherForm() {
   function handleCreateClass(e: FormEvent) {
     e.preventDefault();
 
-    api
-      .post("classes", {
-        avatar,
-        whatsapp,
-        bio,
-        subject,
-        cost: Number(cost),
-        schedule: scheduleItems,
-      })
-      .then(() => {
-        alert("Cadastro realizado com sucesso!");
 
-        history.push("/");
-      })
-      .catch(() => {
-        alert("Erro no cadastro!");
-      });
+
+    // api
+    //   .post("classes", {
+    //     avatar,
+    //     whatsapp,
+    //     bio,
+    //     subject,
+    //     cost: Number(cost),
+    //     schedule: scheduleItems,
+    //   })
+    //   .then(() => {
+    //     alert("Cadastro realizado com sucesso!");
+
+    //     history.push("/");
+    //   })
+    //   .catch(() => {
+    //     alert("Erro no cadastro!");
+    //   });
   }
 
   const handleDeleteSchedule = useCallback((index) => {
@@ -80,6 +82,7 @@ function TeacherForm() {
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
+        to="/study"
         title="Create your schedule."
         description="First you need to fill the form"
       />
@@ -91,7 +94,7 @@ function TeacherForm() {
             <Profile>
               <Avatar>
                 <img src="https://via.placeholder.com/150" alt="" />
-                <span>Thiago Medina</span>
+                <span>{user.name}</span>
               </Avatar>
 
               <Input

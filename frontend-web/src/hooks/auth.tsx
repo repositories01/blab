@@ -20,13 +20,12 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user:User;
+  user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
   signUp(credentials: SignInCredentials): Promise<void>;
   updateUser(user: User): void;
 }
-
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -40,7 +39,6 @@ const AuthProvider: React.FC = ({ children }) => {
 
       return { token, user: JSON.parse(user) };
     }
-    console.log(token, user)
 
     return {} as AuthState;
   });
@@ -52,14 +50,12 @@ const AuthProvider: React.FC = ({ children }) => {
         password,
       },
     });
-    
-    const { token, user } = response.data;
-    
-    console.log( token, user )
+
+    const { token } = response.data;
+    const user = response.data.user[0];
+
     localStorage.setItem("@Blab:token", token);
     localStorage.setItem("@Blab:user", JSON.stringify(user));
-
-    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ token, user });
   }, []);
