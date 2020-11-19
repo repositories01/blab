@@ -10,18 +10,20 @@ interface IUser {
 }
 
 export default class AuthController {
-
+  
   async index(req: Request, res: Response) {
     const users = await db("accounts")
     return res.json(users);
   }
-
-
+  
+  
   async login(req: Request, res: Response) {
-
+    
     const [, hash] = req.headers.authorization?.split(' ');
     const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
     const passCrypto = crypto.createHash("md5").update(password).digest("hex")
+    
+    console.log(req.headers.authorization)
 
     try {
       
@@ -30,7 +32,6 @@ export default class AuthController {
       .select('name', 'email', 'id')
    
         
-
       if (user.length != 0) {
         const token: string = jwt.sign({ user: user[0].id })
         res.status(200).json({ user, token: token });
@@ -48,7 +49,6 @@ export default class AuthController {
 
   async signup(req: Request, res: Response) {
     const { name, email, password } = req.body;
-
     const userObj = {
       name,
       email,
@@ -66,7 +66,7 @@ export default class AuthController {
 
         const token = jwt.sign({ user: userId })
 
-        return res.status(201).json({ userId, token });
+        return res.status(201).json({ userId });
       }
       res.status(400).json({ erro: "This email already exists" });
 

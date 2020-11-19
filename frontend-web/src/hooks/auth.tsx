@@ -40,6 +40,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
       return { token, user: JSON.parse(user) };
     }
+    console.log(token, user)
 
     return {} as AuthState;
   });

@@ -28,6 +28,9 @@
 
 .page-header .top-bar-container > img {
     height: 1.6rem;
+    color: var(--color-line-in-white);
+
+
 }
 
 .page-header .header-content {
