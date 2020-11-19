@@ -10,7 +10,7 @@ svg{
     width: 25px;
     color: var(--color-line-in-white);
     &:hover{
-        color: var(--color-line-in-white);
+        opacity: 0.6;
 
     }
 }

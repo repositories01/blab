@@ -33,8 +33,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           <img src={backIcon} alt="Voltar" />
         </Link>
 
-        <img src={logoImg} alt="blab" />
 
+        <img src={logoImg} alt="blab" />
+        
         <Link className="link-name" to={`${to}`}>
           <span>{linkName}</span>
         </Link>
