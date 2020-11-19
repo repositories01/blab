@@ -7,7 +7,6 @@ import Textarea from "../../components/Textarea";
 import Select from "../../components/Select";
 import { useAuth, User } from "../../hooks/auth";
 
-
 import warningIcon from "../../assets/images/icons/warning.svg";
 import { FiMinusCircle } from "react-icons/fi";
 import { Profile, Avatar } from "./style";
@@ -17,10 +16,10 @@ import api from "../../services/api";
 import "./styles.css";
 
 function TeacherForm() {
-  const { user} = useAuth();
+  const { user } = useAuth();
 
   const history = useHistory();
-  const [profile, setProfile]= useState(user)
+  const [profile, setProfile] = useState(user);
   const [avatar, setAvatar] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [bio, setBio] = useState("");
@@ -57,7 +56,6 @@ function TeacherForm() {
 
     api
       .post("classes", {
-        
         avatar,
         whatsapp,
         bio,
@@ -77,12 +75,11 @@ function TeacherForm() {
 
   const handleDeleteSchedule = useCallback((index) => {
     const result = scheduleItems.filter((e, i) => i != index);
-    // setScheduleItems(result);
+    setScheduleItems(result);
   }, []);
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
-        to="/study"
         title="Create your schedule."
         description="First you need to fill the form"
       />
@@ -93,8 +90,6 @@ function TeacherForm() {
             <legend>About you</legend>
             <Profile>
               <Avatar>
-                {console.log(profile)}
-
                 <img src="https://via.placeholder.com/150" alt="" />
                 <span>Thiago Medina</span>
               </Avatar>
