@@ -47,7 +47,6 @@ const SignIn: React.FC = () => {
 
         history.push("/give-classes");
       } catch (err) {
-        console.log(err)
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
