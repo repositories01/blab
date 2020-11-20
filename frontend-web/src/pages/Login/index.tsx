@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { Link, useHistory } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { useToast } from '../../hooks/toast';
 import Button from "../../components/Button";
 import InputLogin from "../../components/InputLogin";
 import getValidationErrors from "../../utils/getValidationsErros";
@@ -20,6 +21,7 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { signIn } = useAuth();
+  const { addToast } = useToast();
   const history = useHistory();
 
   const handleSubmit = useCallback(
@@ -53,9 +55,14 @@ const SignIn: React.FC = () => {
 
           return;
         }
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
+        });
       }
     },
-    [signIn, history]
+    [signIn,addToast, history]
   );
 
   return (
