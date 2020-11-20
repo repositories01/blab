@@ -24,6 +24,8 @@ const SignIn: React.FC = () => {
   const { signIn } = useAuth();
   const history = useHistory();
 
+  
+
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
       try {
@@ -57,7 +59,7 @@ const SignIn: React.FC = () => {
         addToast({
           type: 'error',
           title: 'Erro no cadastro',
-          description: 'Ocorreu um erro ao fazer o cadastro, tente novamente.',
+          description: 'Ocorreu um erro ao fazer o login, tente novamente.',
         });
       }
     },
@@ -69,6 +71,8 @@ const SignIn: React.FC = () => {
       <Background />
       <Content>
         <AnimationContainer>
+      
+        
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Fazer Login</h1>
 
