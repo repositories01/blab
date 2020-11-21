@@ -13,12 +13,15 @@ import { Container, Error } from "./styles";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  label?: string;
   containerStyle?: object;
   icon?: React.ComponentType<IconBaseProps>;
+  
 }
 
 const Input: React.FC<InputProps> = ({
   name,
+  label,
   icon: Icon,
   containerStyle = {},
   ...rest

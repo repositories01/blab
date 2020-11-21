@@ -9,7 +9,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const Button: React.FC<ButtonProps> = ({ children, loading, ...rest }) => (
   <Container type="button" {...rest}>
-    {loading ? <Load src={loadIcon}/> : children}
+    {loading ? 'carregando...': children}
   </Container>
 );
 

@@ -1,21 +1,35 @@
-import React, { useState, FormEvent, useCallback } from "react";
+import React, { useState, useRef, FormEvent, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import * as Yup from "yup";
+import { FormHandles } from "@unform/core";
+import { Form } from "@unform/web";
 
 import Input from "../../components/Input";
 import PageHeader from "../../components/PageHeader";
 import Textarea from "../../components/Textarea";
 import Select from "../../components/Select";
-import { useAuth, User } from "../../hooks/auth";
+import getValidationErrors from "../../utils/getValidationsErros";
+
+import { useAuth } from "../../hooks/auth";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
 import { FiMinusCircle } from "react-icons/fi";
 import { Profile, Avatar } from "./style";
 
-import api from "../../services/api";
-
 import "./styles.css";
 
+
+interface IClass{
+  whatsapp: string;
+  bio: string;
+  level: string;
+  cost: string;
+  schedule: [string]
+
+
+}
 function TeacherForm() {
+  const formRef = useRef<FormHandles>(null);
   const { user } = useAuth();
 
   const history = useHistory();
@@ -34,6 +48,10 @@ function TeacherForm() {
   function addNewScheduleItem() {
     setScheduleItems([...scheduleItems, { week_day: 0, from: "", to: "" }]);
   }
+  const handleDeleteSchedule = useCallback((index) => {
+    const result = scheduleItems.filter((e, i) => i != index);
+    setScheduleItems(result);
+  }, []);
 
   function setScheduleItemValue(
     position: number,
@@ -53,8 +71,7 @@ function TeacherForm() {
 
   function handleCreateClass(e: FormEvent) {
     e.preventDefault();
-
-
+    console.log(e);
 
     // api
     //   .post("classes", {
@@ -75,9 +92,8 @@ function TeacherForm() {
     //   });
   }
 
-  const handleDeleteSchedule = useCallback((index) => {
-    const result = scheduleItems.filter((e, i) => i != index);
-    setScheduleItems(result);
+  const handleCreateClasses = useCallback( async() => {
+
   }, []);
   return (
     <div id="page-teacher-form" className="container">
@@ -122,7 +138,7 @@ function TeacherForm() {
             <legend>English level</legend>
 
             <Select
-              name="subject"
+              name="level"
               label="Level"
               value={subject}
               onChange={(e) => {
