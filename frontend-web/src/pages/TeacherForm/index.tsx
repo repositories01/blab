@@ -104,7 +104,7 @@ function TeacherForm() {
       />
 
       <main>
-        <form onSubmit={handleCreateClass}>
+        <Form ref={formRef} onSubmit={handleCreateClass}>
           <fieldset>
             <legend>About you</legend>
             <Profile>
@@ -232,7 +232,7 @@ function TeacherForm() {
 
             <button type="submit">Save</button>
           </footer>
-        </form>
+        </Form>
       </main>
     </div>
   );
