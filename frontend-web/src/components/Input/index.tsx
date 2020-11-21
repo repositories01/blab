@@ -3,7 +3,7 @@ import React, { InputHTMLAttributes, useEffect, useRef } from "react";
 import { useField } from "@unform/core";
 import { IconBaseProps } from "react-icons";
 import { FiAlertCircle } from "react-icons/fi";
-import { Container, Error } from "./style";
+import { Error, InputForm } from "./style";
 
 import "./styles.css";
 
@@ -36,9 +36,10 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className="input-block">
       <label htmlFor={name}>{label}</label>
-      
+
       {Icon && <Icon size={20} />}
-      <input
+      <InputForm
+        isErrored={!!error}
         type="text"
         placeholder={placeholder}
         ref={inputRef}
