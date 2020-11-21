@@ -3,8 +3,11 @@ import styled from 'styled-components';
 
 export const Profile = styled.div`
 display: flex;
+
 margin-bottom: 20px;
-justify-content: flex-start;
+justify-content: space-around;
+
+
 
 @media(max-width: 800px) {
     flex-direction: column;
