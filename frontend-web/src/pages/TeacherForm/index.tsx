@@ -33,6 +33,7 @@ function TeacherForm() {
 
   const history = useHistory();
   const [subject, setSubject] = useState("");
+  const [erro, setErro] = useState();
 
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: "", to: "" },
@@ -70,6 +71,7 @@ function TeacherForm() {
           whatsapp: Yup.number().required(),
           cost: Yup.number().required(),
           bio: Yup.string().required(),
+          level: Yup.string().required(),
         });
 
         await schema.validate(data, {
@@ -105,6 +107,11 @@ function TeacherForm() {
       />
 
       <main>
+        <p>
+          <img src={warningIcon} alt="Important" />
+          Important! <br />
+          Fill in all fields
+        </p>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <fieldset>
             <legend>About you</legend>
@@ -143,7 +150,7 @@ function TeacherForm() {
                 { value: "C2", label: "C2" },
               ]}
             />
-            <Input name="cost" label="Price" type="text" placeholder='50'/>
+            <Input name="cost" label="Price" type="text" placeholder="50" />
           </fieldset>
 
           <fieldset>
@@ -191,11 +198,11 @@ function TeacherForm() {
           </fieldset>
 
           <footer>
-            <p>
+            {/* <p>
               <img src={warningIcon} alt="Important" />
               Important! <br />
               Fill in all fields
-            </p>
+            </p> */}
 
             <button type="submit">Save</button>
           </footer>
