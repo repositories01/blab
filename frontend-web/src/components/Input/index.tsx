@@ -1,17 +1,13 @@
 import React, { InputHTMLAttributes, useEffect, useRef } from "react";
 
 import { useField } from "@unform/core";
-import { IconBaseProps } from "react-icons";
-import { FiAlertCircle } from "react-icons/fi";
-import { Error, InputForm } from "./style";
+import { InputForm } from "./style";
 
 import "./styles.css";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
-  containerStyle?: object;
-  icon?: React.ComponentType<IconBaseProps>;
   type?: string;
 }
 
@@ -19,15 +15,11 @@ const Input: React.FC<InputProps> = ({
   label,
   name,
   type,
-  icon: Icon,
-  containerStyle = {},
   placeholder,
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, error, registerField } = useField(name);
-
-  
 
   useEffect(() => {
     registerField({
@@ -39,25 +31,17 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <div className="input-block">
-
       <label htmlFor={name}>{label}</label>
 
-      {Icon && <Icon size={20} />}
       <InputForm
         isErrored={!!error}
         defaultValue={defaultValue}
-
-        type={type ? type : "text"}
+        type={type}
         placeholder={placeholder}
         ref={inputRef}
         id={name}
         {...rest}
       />
-      {error && (
-        <Error title={error}>
-          <FiAlertCircle color="#c53030" size={20} />
-        </Error>
-      )}
     </div>
   );
 };
