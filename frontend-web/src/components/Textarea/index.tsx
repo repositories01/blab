@@ -22,6 +22,7 @@ const Textarea: React.FC<TextareaProps> = ({  placeholder, label, name, ...rest 
       path: "value",
     });
   }, [fieldName, registerField]);
+
   return (
     <div className="textarea-block">
       <label htmlFor={name}>{label}</label>

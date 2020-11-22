@@ -35,11 +35,11 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          name: Yup.string().required("Nome obrigatório"),
+          name: Yup.string().required("Name required"),
           email: Yup.string()
-            .required("Email obrigatório")
-            .email("Digite um e-mail válido"),
-          password: Yup.string().min(6, "No mínimo 6 dígitos"),
+            .required("Email required")
+            .email("Enter a valid email address"),
+          password: Yup.string().min(6, "At least 6 digits"),
         });
 
         await schema.validate(data, {
@@ -57,8 +57,8 @@ const SignUp: React.FC = () => {
         history.push("/give-classes");
         addToast({
           type: "success",
-          title: "Cadastro realizado!",
-          description: "Você já pode fazer seu login!",
+          title: "Registration completed!",
+          description: "You can now login!",
         });
       } catch (err) {
         console.log(err);
@@ -70,8 +70,8 @@ const SignUp: React.FC = () => {
         }
         addToast({
           type: "error",
-          title: "Erro no cadastro",
-          description: "Ocorreu um erro ao fazer o cadastro, tente novamente.",
+          title: "Registration error",
+          description: "An error occurred while registering, please try again.",
         });
       } finally {
         setLoading(false);

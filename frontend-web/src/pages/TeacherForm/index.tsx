@@ -11,6 +11,7 @@ import Select from "../../components/Select";
 import getValidationErrors from "../../utils/getValidationsErros";
 
 import { useAuth } from "../../hooks/auth";
+import { useToast } from "../../hooks/toast";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
 import { FiMinusCircle } from "react-icons/fi";
@@ -18,19 +19,17 @@ import { Profile, Avatar } from "./style";
 
 import "./styles.css";
 
-
-interface IClass{
+interface IClass {
   whatsapp: string;
   bio: string;
   level: string;
   cost: string;
-  schedule: [string]
-
-
+  schedule: [string];
 }
 function TeacherForm() {
   const formRef = useRef<FormHandles>(null);
   const { user } = useAuth();
+  const { addToast } = useToast();
 
   const history = useHistory();
   const [profile, setProfile] = useState(user);
@@ -68,33 +67,43 @@ function TeacherForm() {
 
     setScheduleItems(updatedScheduleItems);
   }
+  const handleSubmit = useCallback(
+    async (data: IClass) => {
+      try {
+        // formRef.current?.setErrors({});
 
-  function handleCreateClass(e: FormEvent) {
-    e.preventDefault();
-    console.log(e);
+        // const schema = Yup.object().shape({
+        //   email: Yup.string()
+        //     .required("Email obrigatório")
+        //     .email("Digite um e-mail válido"),
+        //   password: Yup.string().required("Senha obrigatória"),
+        // });
 
-    // api
-    //   .post("classes", {
-    //     avatar,
-    //     whatsapp,
-    //     bio,
-    //     subject,
-    //     cost: Number(cost),
-    //     schedule: scheduleItems,
-    //   })
-    //   .then(() => {
-    //     alert("Cadastro realizado com sucesso!");
+        // await schema.validate(data, {
+        //   abortEarly: false,
+        // });
+      
+        console.log(data);
 
-    //     history.push("/");
-    //   })
-    //   .catch(() => {
-    //     alert("Erro no cadastro!");
-    //   });
-  }
+        // history.push("/give-classes");
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-  const handleCreateClasses = useCallback( async() => {
+          formRef.current?.setErrors(errors);
 
-  }, []);
+          return;
+        }
+        addToast({
+          type: "error",
+          title: "Registration error",
+          description: "An error occurred while registering, please try again.",
+        });
+      }
+    },
+    [addToast, history]
+  );
+
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
@@ -104,7 +113,7 @@ function TeacherForm() {
       />
 
       <main>
-        <Form ref={formRef} onSubmit={handleCreateClass}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <fieldset>
             <legend>About you</legend>
             <Profile>
@@ -117,21 +126,13 @@ function TeacherForm() {
                 name="whatsapp"
                 label="Whatsapp"
                 placeholder="(   ) _  _ _ _ _   _ _ _ _ "
-                value={whatsapp}
                 onChange={(e) => {
                   setWhatsapp(e.target.value);
                 }}
               />
             </Profile>
 
-            <Textarea
-              name="bio"
-              label="Bio"
-              value={bio}
-              // onChange={(e) => {
-              //   setBio(e.target.value);
-              // }}
-            />
+            <Textarea name="bio" label="Bio" />
           </fieldset>
 
           <fieldset>
@@ -153,15 +154,7 @@ function TeacherForm() {
                 { value: "C2", label: "C2" },
               ]}
             />
-            <Input
-              name="cost"
-              label="Price"
-              type="text"
-              value={cost}
-              onChange={(e) => {
-                setCost(e.target.value);
-              }}
-            />
+            <Input name="cost" label="Price" type="text" />
           </fieldset>
 
           <fieldset>
@@ -192,24 +185,8 @@ function TeacherForm() {
                       { value: "6", label: "Saturday" },
                     ]}
                   />
-                  <Input
-                    name="from"
-                    label="From"
-                    type="time"
-                    value={scheduleItem.from}
-                    // onChange={(e) =>
-                    //   setScheduleItemValue(index, "from", e.target.value)
-                    // }
-                  />
-                  <Input
-                    name="to"
-                    label="To"
-                    type="time"
-                    value={scheduleItem.to}
-                    // onChange={(e) =>
-                    //   setScheduleItemValue(index, "to", e.target.value)
-                    // }
-                  />
+                  <Input name="from" label="From" type="time" />
+                  <Input name="to" label="To" type="time" />
                   {index === 0 ? null : (
                     <button
                       type="button"
@@ -226,7 +203,7 @@ function TeacherForm() {
 
           <footer>
             <p>
-              <img src={warningIcon} alt="Aviso importante" />
+              <img src={warningIcon} alt="Important" />
               Important! <br />
               Fill in all fields
             </p>

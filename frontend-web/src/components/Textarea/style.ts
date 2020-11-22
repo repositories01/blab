@@ -18,5 +18,13 @@ export const TextArea = Styled.textarea<ContainerProps>`
     padding: 1.2rem 1.6rem;
     font: 1.6rem Archivo;
 
+    ${props =>
+    props.isErrored &&
+    css`
+      border: 1.8px solid;
+      border-color: #c53030;
+    `}
+
+
 
 `;

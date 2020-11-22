@@ -33,9 +33,9 @@ const SignIn: React.FC = () => {
 
         const schema = Yup.object().shape({
           email: Yup.string()
-            .required("Email obrigatório")
-            .email("Digite um e-mail válido"),
-          password: Yup.string().required("Senha obrigatória"),
+            .required("Email required")
+            .email("Enter a valid email address"),
+          password: Yup.string().required("Password required"),
         });
 
         await schema.validate(data, {
@@ -57,9 +57,9 @@ const SignIn: React.FC = () => {
           return;
         }
         addToast({
-          type: 'error',
-          title: 'Erro no cadastro',
-          description: 'Ocorreu um erro ao fazer o login, tente novamente.',
+          type: "error",
+          title: "Registration error",
+          description: "An error occurred while registering, please try again.",
         });
       }
     },
