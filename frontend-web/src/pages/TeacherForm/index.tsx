@@ -32,13 +32,7 @@ function TeacherForm() {
   const { addToast } = useToast();
 
   const history = useHistory();
-  const [profile, setProfile] = useState(user);
-  const [avatar, setAvatar] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
-  const [bio, setBio] = useState("");
-
   const [subject, setSubject] = useState("");
-  const [cost, setCost] = useState("");
 
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: "", to: "" },
@@ -70,23 +64,21 @@ function TeacherForm() {
   const handleSubmit = useCallback(
     async (data: IClass) => {
       try {
-        // formRef.current?.setErrors({});
+        formRef.current?.setErrors({});
 
-        // const schema = Yup.object().shape({
-        //   email: Yup.string()
-        //     .required("Email obrigatório")
-        //     .email("Digite um e-mail válido"),
-        //   password: Yup.string().required("Senha obrigatória"),
-        // });
+        const schema = Yup.object().shape({
+          whatsapp: Yup.number().required(),
+          cost: Yup.number().required(),
+          bio: Yup.string().required(),
+        });
 
-        // await schema.validate(data, {
-        //   abortEarly: false,
-        // });
-      
-        console.log(data);
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
         // history.push("/give-classes");
       } catch (err) {
+        console.log(err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
@@ -125,10 +117,7 @@ function TeacherForm() {
               <Input
                 name="whatsapp"
                 label="Whatsapp"
-                placeholder="(   ) _  _ _ _ _   _ _ _ _ "
-                onChange={(e) => {
-                  setWhatsapp(e.target.value);
-                }}
+                placeholder="( 21 ) _  _ _ _ _   _ _ _ _ "
               />
             </Profile>
 
@@ -154,7 +143,7 @@ function TeacherForm() {
                 { value: "C2", label: "C2" },
               ]}
             />
-            <Input name="cost" label="Price" type="text" />
+            <Input name="cost" label="Price" type="text" placeholder='50'/>
           </fieldset>
 
           <fieldset>
