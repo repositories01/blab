@@ -5,7 +5,7 @@ import Tooltip from '../Tooltip';
 
 interface ContainerProps {
 
-  isErrored: boolean;
+  isErrored?: boolean;
 }
 
 export const InputForm = styled.input<ContainerProps>`

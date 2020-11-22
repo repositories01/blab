@@ -12,11 +12,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   containerStyle?: object;
   icon?: React.ComponentType<IconBaseProps>;
+  type?: string;
 }
 
 const Input: React.FC<InputProps> = ({
   label,
   name,
+  type,
   icon: Icon,
   containerStyle = {},
   placeholder,
@@ -24,6 +26,8 @@ const Input: React.FC<InputProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, error, registerField } = useField(name);
+
+  
 
   useEffect(() => {
     registerField({
@@ -35,12 +39,15 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <div className="input-block">
+
       <label htmlFor={name}>{label}</label>
 
       {Icon && <Icon size={20} />}
       <InputForm
         isErrored={!!error}
-        type="text"
+        defaultValue={defaultValue}
+
+        type={type ? type : "text"}
         placeholder={placeholder}
         ref={inputRef}
         id={name}

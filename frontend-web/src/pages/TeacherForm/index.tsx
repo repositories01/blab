@@ -128,9 +128,9 @@ function TeacherForm() {
               name="bio"
               label="Bio"
               value={bio}
-              onChange={(e) => {
-                setBio(e.target.value);
-              }}
+              // onChange={(e) => {
+              //   setBio(e.target.value);
+              // }}
             />
           </fieldset>
 
@@ -156,6 +156,7 @@ function TeacherForm() {
             <Input
               name="cost"
               label="Price"
+              type="text"
               value={cost}
               onChange={(e) => {
                 setCost(e.target.value);
@@ -196,18 +197,18 @@ function TeacherForm() {
                     label="From"
                     type="time"
                     value={scheduleItem.from}
-                    onChange={(e) =>
-                      setScheduleItemValue(index, "from", e.target.value)
-                    }
+                    // onChange={(e) =>
+                    //   setScheduleItemValue(index, "from", e.target.value)
+                    // }
                   />
                   <Input
                     name="to"
                     label="To"
                     type="time"
                     value={scheduleItem.to}
-                    onChange={(e) =>
-                      setScheduleItemValue(index, "to", e.target.value)
-                    }
+                    // onChange={(e) =>
+                    //   setScheduleItemValue(index, "to", e.target.value)
+                    // }
                   />
                   {index === 0 ? null : (
                     <button

@@ -1,4 +1,6 @@
-import React, { useState, FormEvent, useCallback, useEffect } from "react";
+import React, { useState,useRef,  FormEvent, useCallback, useEffect } from "react";
+import { FormHandles } from "@unform/core";
+import { Form } from "@unform/web";
 
 import PageHeader from "../../components/PageHeader";
 import TeacherItem, { Teacher } from "../../components/TeacherItem";
@@ -12,6 +14,8 @@ import "./styles.css";
 import { resolve } from "dns";
 
 function TeacherList() {
+  const formRef = useRef<FormHandles>(null);
+
   const [teachers, setTeachers] = useState([]);
 
   const [subject, setSubject] = useState("");
@@ -45,7 +49,7 @@ function TeacherList() {
   return (
     <div id="page-teacher-list" className="container">
       <PageHeader linkName="Give classes" to="/give-classes"title="These are the available teachers.">
-        <form id="search-teachers" onSubmit={searchTeachers}>
+        <Form ref={formRef} id="search-teachers" onSubmit={searchTeachers}>
           <Select
             name="week_day"
             label="Week Day"
@@ -75,7 +79,7 @@ function TeacherList() {
           />
 
           <button type="submit">Search</button>
-        </form>
+        </Form>
       </PageHeader>
 
       <main>
