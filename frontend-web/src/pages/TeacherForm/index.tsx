@@ -24,7 +24,13 @@ interface IClass {
   bio: string;
   level: string;
   cost: string;
-  schedule: [string];
+  week_day: [
+    {
+      week_day: string;
+      from: string;
+      to: string;
+    }
+  ];
 }
 function TeacherForm() {
   const formRef = useRef<FormHandles>(null);
@@ -33,7 +39,7 @@ function TeacherForm() {
 
   const history = useHistory();
   const [subject, setSubject] = useState("");
-  const [erro, setErro] = useState();
+  const [erro, setErro] = useState(false);
 
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: "", to: "" },
@@ -61,31 +67,43 @@ function TeacherForm() {
     });
 
     setScheduleItems(updatedScheduleItems);
+    
   }
   const handleSubmit = useCallback(
     async (data: IClass) => {
       try {
-        formRef.current?.setErrors({});
+        // formRef.current?.setErrors({});
 
-        const schema = Yup.object().shape({
-          whatsapp: Yup.number().required(),
-          cost: Yup.number().required(),
-          bio: Yup.string().required(),
-          level: Yup.string().required(),
-        });
+        // const schema = Yup.object().shape({
+        //   whatsapp: Yup.number().required(),
+        //   cost: Yup.number().required(),
+        //   bio: Yup.string().required(),
+        //   level: Yup.string().required(),
+        // });
 
-        await schema.validate(data, {
-          abortEarly: false,
-        });
+        // await schema.validate(data, {
+        //   abortEarly: false,
+        // });
 
         // history.push("/give-classes");
-      } catch (err) {
-        console.log(err);
+        
+
+        // const dataTosend = Object.assign({
+        //   data.whatsapp,
+        //   data.bio,
+        //   level,
+        //   cost,
+        //   schedule: scheduleItems
+          
+        // })
+
+        console.log(scheduleItems)
+      }catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
-
+          setErro(true);
           return;
         }
         addToast({
@@ -107,11 +125,13 @@ function TeacherForm() {
       />
 
       <main>
-        <p>
-          <img src={warningIcon} alt="Important" />
-          Important! <br />
-          Fill in all fields
-        </p>
+        {erro && (
+          <p>
+            <img src={warningIcon} alt="Important" />
+            Important! <br />
+            Fill in all fields
+          </p>
+        )}
         <Form ref={formRef} onSubmit={handleSubmit}>
           <fieldset>
             <legend>About you</legend>
