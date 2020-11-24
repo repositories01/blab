@@ -2,7 +2,7 @@ import React, { useState, useRef, FormEvent, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import { FormHandles } from "@unform/core";
-import { Form } from "@unform/web";
+import { useForm } from "react-hook-form";
 
 import Input from "../../components/Input";
 import PageHeader from "../../components/PageHeader";
@@ -34,7 +34,7 @@ interface IClass {
   ];
 }
 function TeacherForm() {
-  const formRef = useRef<FormHandles>(null);
+  const formRef = useRef();
   const { user } = useAuth();
   const { addToast } = useToast();
 
@@ -81,7 +81,7 @@ function TeacherForm() {
     async (e: FormEvent) => {
       e.preventDefault();
       try {
-        formRef.current?.setErrors({});
+        // formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
           whatsapp: Yup.number().required(),
@@ -94,13 +94,12 @@ function TeacherForm() {
         await schema.validate(data, {
           abortEarly: false,
         });
-
-
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
-          formRef.current?.setErrors(errors);
-          console.log(formRef.current);
+          // formRef.current?.setErrors(errors);
+          console.log(formRef);
+          console.log(errors)
           setErro(true);
           return;
         }
