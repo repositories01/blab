@@ -12,6 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   type?: string;
   icon?: React.ComponentType<IconBaseProps>;
+  ref:string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   name,
   icon: Icon,
   type,
+  ref,
   placeholder,
   ...rest
 }) => {
@@ -42,6 +44,7 @@ const Input: React.FC<InputProps> = ({
         // defaultValue={defaultValue}
         type={type}
         placeholder={placeholder}
+        
         ref={inputRef}
         id={name}
         {...rest}

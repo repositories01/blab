@@ -34,12 +34,8 @@ interface IClass {
   ];
 }
 function TeacherForm() {
-  const formRef = useRef();
   const { user } = useAuth();
   const { addToast } = useToast();
-
-  const [profile, setProfile] = useState(user);
-  const [avatar, setAvatar] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [bio, setBio] = useState("");
 
@@ -52,7 +48,6 @@ function TeacherForm() {
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: "", to: "" },
   ]);
-  const [schedule, setSchedule] = useState({});
 
   function addNewScheduleItem() {
     setScheduleItems([...scheduleItems, { week_day: 0, from: "", to: "" }]);
@@ -77,12 +72,11 @@ function TeacherForm() {
 
     setScheduleItems(updatedScheduleItems);
   }
+
   const handleSubmit = useCallback(
     async (e: FormEvent) => {
       e.preventDefault();
       try {
-        // formRef.current?.setErrors({});
-
         const schema = Yup.object().shape({
           whatsapp: Yup.number().required(),
         });
@@ -97,9 +91,8 @@ function TeacherForm() {
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
-          // formRef.current?.setErrors(errors);
-          console.log(formRef);
-          console.log(errors)
+
+          console.log(errors);
           setErro(true);
           return;
         }
