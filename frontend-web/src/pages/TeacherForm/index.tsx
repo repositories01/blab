@@ -9,6 +9,7 @@ import PageHeader from "../../components/PageHeader";
 import Textarea from "../../components/Textarea";
 import Select from "../../components/Select";
 import getValidationErrors from "../../utils/getValidationsErros";
+import api from "../../services/api";
 
 import { useAuth } from "../../hooks/auth";
 import { useToast } from "../../hooks/toast";
@@ -37,6 +38,13 @@ function TeacherForm() {
   const { user } = useAuth();
   const { addToast } = useToast();
 
+  const [profile, setProfile] = useState(user);
+  const [avatar, setAvatar] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [bio, setBio] = useState("");
+
+  const [cost, setCost] = useState("");
+
   const history = useHistory();
   const [subject, setSubject] = useState("");
   const [erro, setErro] = useState(false);
@@ -44,6 +52,7 @@ function TeacherForm() {
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: "", to: "" },
   ]);
+  const [schedule, setSchedule] = useState({});
 
   function addNewScheduleItem() {
     setScheduleItems([...scheduleItems, { week_day: 0, from: "", to: "" }]);
@@ -69,36 +78,29 @@ function TeacherForm() {
     setScheduleItems(updatedScheduleItems);
   }
   const handleSubmit = useCallback(
-    async (data: IClass) => {
+    async (e: FormEvent) => {
+      e.preventDefault();
       try {
-        // formRef.current?.setErrors({});
+        formRef.current?.setErrors({});
 
-        // const schema = Yup.object().shape({
-        //   whatsapp: Yup.number().required(),
-        //   cost: Yup.number().required(),
-        //   bio: Yup.string().required(),
-        //   level: Yup.string().required(),
-        // });
-
-        // await schema.validate(data, {
-        //   abortEarly: false,
-        // });
-
-        // history.push("/give-classes");
-        const { whatsapp, bio, level, cost } = data;
-        const dataTosend = Object.assign({
-          whatsapp,
-          bio,
-          level,
-          cost,
-          schedule: scheduleItems,
+        const schema = Yup.object().shape({
+          whatsapp: Yup.number().required(),
         });
-        console.log(scheduleItems);
+
+        const data = Object.assign({
+          whatsapp,
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
-
           formRef.current?.setErrors(errors);
+          console.log(formRef.current);
           setErro(true);
           return;
         }
@@ -128,7 +130,7 @@ function TeacherForm() {
             Fill in all fields
           </p>
         )}
-        <Form ref={formRef} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <fieldset>
             <legend>About you</legend>
             <Profile>
@@ -141,10 +143,21 @@ function TeacherForm() {
                 name="whatsapp"
                 label="Whatsapp"
                 placeholder="( 21 ) _  _ _ _ _   _ _ _ _ "
+                value={whatsapp}
+                onChange={(e) => {
+                  setWhatsapp(e.target.value);
+                }}
               />
             </Profile>
 
-            <Textarea name="bio" label="Bio" />
+            <Textarea
+              name="bio"
+              label="Bio"
+              value={bio}
+              onChange={(e) => {
+                setBio(e.target.value);
+              }}
+            />
           </fieldset>
 
           <fieldset>
@@ -165,7 +178,16 @@ function TeacherForm() {
                 { value: "C2", label: "C2" },
               ]}
             />
-            <Input name="cost" label="Price" type="text" placeholder="50" />
+            <Input
+              name="cost"
+              label="Price"
+              type="text"
+              placeholder="50"
+              value={cost}
+              onChange={(e) => {
+                setCost(e.target.value);
+              }}
+            />
           </fieldset>
 
           <fieldset>
@@ -231,7 +253,7 @@ function TeacherForm() {
           <footer>
             <button type="submit">Save</button>
           </footer>
-        </Form>
+        </form>
       </main>
     </div>
   );

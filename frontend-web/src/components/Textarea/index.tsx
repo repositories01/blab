@@ -12,25 +12,25 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 }
 
 const Textarea: React.FC<TextareaProps> = ({  placeholder, label, name, ...rest }) => {
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { fieldName, defaultValue, error, registerField } = useField(name);
+  // const inputRef = useRef<HTMLTextAreaElement>(null);
+  // const { fieldName, defaultValue, error, registerField } = useField(name);
 
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: inputRef.current,
-      path: "value",
-    });
-  }, [fieldName, registerField]);
+  // useEffect(() => {
+  //   registerField({
+  //     name: fieldName,
+  //     ref: inputRef.current,
+  //     path: "value",
+  //   });
+  // }, [fieldName, registerField]);
 
   return (
     <div className="textarea-block">
       <label htmlFor={name}>{label}</label>
       <TextArea
-        isErrored={!!error}
-        defaultValue={defaultValue}
+        // isErrored={!!error}
+        // defaultValue={defaultValue}
         placeholder={placeholder}
-        ref={inputRef}
+        // ref={inputRef}
         id={name}
      {...rest} />
     </div>

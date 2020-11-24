@@ -23,23 +23,23 @@ const Input: React.FC<InputProps> = ({
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, defaultValue, error, registerField } = useField(name);
+  // const { fieldName, defaultValue, error, registerField } = useField(name);
 
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: inputRef.current,
-      path: "value",
-    });
-  }, [fieldName, registerField]);
+  // useEffect(() => {
+  //   registerField({
+  //     name: fieldName,
+  //     ref: inputRef.current,
+  //     path: "value",
+  //   });
+  // }, [fieldName, registerField]);
 
   return (
     <div className="input-block">
       <label htmlFor={name}>{label}</label>
 
       <InputForm
-        isErrored={!!error}
-        defaultValue={defaultValue}
+        // isErrored={!!error}
+        // defaultValue={defaultValue}
         type={type}
         placeholder={placeholder}
         ref={inputRef}
