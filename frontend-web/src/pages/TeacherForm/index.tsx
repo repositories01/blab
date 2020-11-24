@@ -67,7 +67,6 @@ function TeacherForm() {
     });
 
     setScheduleItems(updatedScheduleItems);
-    
   }
   const handleSubmit = useCallback(
     async (data: IClass) => {
@@ -86,19 +85,16 @@ function TeacherForm() {
         // });
 
         // history.push("/give-classes");
-        
-
-        // const dataTosend = Object.assign({
-        //   data.whatsapp,
-        //   data.bio,
-        //   level,
-        //   cost,
-        //   schedule: scheduleItems
-          
-        // })
-
-        console.log(scheduleItems)
-      }catch (err) {
+        const { whatsapp, bio, level, cost } = data;
+        const dataTosend = Object.assign({
+          whatsapp,
+          bio,
+          level,
+          cost,
+          schedule: scheduleItems,
+        });
+        console.log(scheduleItems);
+      } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
@@ -153,7 +149,6 @@ function TeacherForm() {
 
           <fieldset>
             <legend>English level</legend>
-
             <Select
               name="level"
               label="Level"
@@ -201,8 +196,24 @@ function TeacherForm() {
                       { value: "6", label: "Saturday" },
                     ]}
                   />
-                  <Input name="from" label="From" type="time" />
-                  <Input name="to" label="To" type="time" />
+                  <Input
+                    name="from"
+                    label="From"
+                    type="time"
+                    defaultValue={scheduleItem.from}
+                    onChange={(e) =>
+                      setScheduleItemValue(index, "from", e.target.value)
+                    }
+                  />
+                  <Input
+                    name="to"
+                    label="To"
+                    type="time"
+                    defaultValue={scheduleItem.to}
+                    onChange={(e) =>
+                      setScheduleItemValue(index, "to", e.target.value)
+                    }
+                  />
                   {index === 0 ? null : (
                     <button
                       type="button"
@@ -218,12 +229,6 @@ function TeacherForm() {
           </fieldset>
 
           <footer>
-            {/* <p>
-              <img src={warningIcon} alt="Important" />
-              Important! <br />
-              Fill in all fields
-            </p> */}
-
             <button type="submit">Save</button>
           </footer>
         </Form>

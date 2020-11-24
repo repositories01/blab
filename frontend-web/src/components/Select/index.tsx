@@ -14,20 +14,20 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const Select: React.FC<SelectProps> = ({ label, name, options, ...rest }) => {
-  const inputRef = useRef<HTMLSelectElement>(null);
-  const { fieldName, defaultValue, error, registerField } = useField(name);
+  // const inputRef = useRef<HTMLSelectElement>(null);
+  // const { fieldName, defaultValue, error, registerField } = useField(name);
 
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: inputRef.current,
-      path: "value",
-    });
-  }, [fieldName, registerField]);
+  // useEffect(() => {
+  //   registerField({
+  //     name: fieldName,
+  //     ref: inputRef.current,
+  //     path: "value",
+  //   });
+  // }, [fieldName, registerField]);
   return (
     <div className="select-block">
       <label htmlFor={name}>{label}</label>
-      <SelectForm ref={inputRef} value="" id={name} {...rest}>
+      <SelectForm  value="" id={name} {...rest}>
         <option value="" disabled hidden>
           Select an option
         </option>
