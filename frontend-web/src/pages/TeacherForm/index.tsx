@@ -20,25 +20,15 @@ import { Profile, Avatar } from "./style";
 
 import "./styles.css";
 
-interface IClass {
-  whatsapp: string;
-  bio: string;
-  level: string;
-  cost: string;
-  week_day: [
-    {
-      week_day: string;
-      from: string;
-      to: string;
-    }
-  ];
-}
 function TeacherForm() {
   const { user } = useAuth();
   const { addToast } = useToast();
+  const { register, handleSubmit, errors } = useForm()
+
+
+
   const [whatsapp, setWhatsapp] = useState("");
   const [bio, setBio] = useState("");
-
   const [cost, setCost] = useState("");
 
   const history = useHistory();
@@ -73,27 +63,26 @@ function TeacherForm() {
     setScheduleItems(updatedScheduleItems);
   }
 
-  const handleSubmit = useCallback(
-    async (e: FormEvent) => {
-      e.preventDefault();
+  const handleSubmit2 = useCallback(
+    (e) => {
+ 
       try {
+
+        console.log(e)
         const schema = Yup.object().shape({
-          whatsapp: Yup.number().required(),
+          whatsapp: Yup.string().required(),
         });
 
-        const data = Object.assign({
+        let data = {
           whatsapp,
-        });
+        };
 
-        await schema.validate(data, {
-          abortEarly: false,
-        });
+        schema.isValid(data).then((valid) => {});
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-          console.log(errors);
-          setErro(true);
+          setErro(!!errors);
           return;
         }
         addToast({
@@ -122,7 +111,7 @@ function TeacherForm() {
             Fill in all fields
           </p>
         )}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(handleSubmit2)}>
           <fieldset>
             <legend>About you</legend>
             <Profile>
@@ -175,6 +164,7 @@ function TeacherForm() {
               label="Price"
               type="text"
               placeholder="50"
+              error={erro}
               value={cost}
               onChange={(e) => {
                 setCost(e.target.value);
