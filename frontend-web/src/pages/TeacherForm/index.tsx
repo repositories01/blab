@@ -14,7 +14,7 @@ import { useToast } from "../../hooks/toast";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
 import { FiMinusCircle } from "react-icons/fi";
-import { Profile, Avatar } from "./style";
+import { Profile, Avatar, ErrorMessage } from "./style";
 
 import "./styles.css";
 
@@ -76,8 +76,6 @@ function TeacherForm() {
           .required(),
       });
 
-      console.log(scheduleItems);
-
       let data = {
         whatsapp,
         bio,
@@ -89,6 +87,7 @@ function TeacherForm() {
       await schema.validate(data, {
         abortEarly: false,
       });
+
       setErro(false);
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
@@ -114,11 +113,11 @@ function TeacherForm() {
 
       <main>
         {erro ? (
-          <p>
+          <ErrorMessage>
             <img src={warningIcon} alt="Important" />
             Important! <br />
             Fill in all fields
-          </p>
+          </ErrorMessage>
         ) : null}
 
         <form onSubmit={handleSubmit2}>
