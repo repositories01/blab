@@ -63,6 +63,8 @@ function TeacherForm() {
       const schema = Yup.object().shape({
         whatsapp: Yup.string().required(),
         cost: Yup.string().required(),
+        bio: Yup.string().required(),
+        subject: Yup.string().required(),
         scheduleItems: Yup.array()
           .of(
             Yup.object().shape({
@@ -78,18 +80,20 @@ function TeacherForm() {
 
       let data = {
         whatsapp,
+        bio,
+        subject,
         cost,
         scheduleItems,
       };
-      //  const isValid = await  schema.isValid(data).then((valid) => valid);
 
       await schema.validate(data, {
         abortEarly: false,
       });
+      setErro(false);
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
-        console.log(errors);
+        setErro(!!errors);
         return;
       }
       addToast({
@@ -109,13 +113,13 @@ function TeacherForm() {
       />
 
       <main>
-        {erro && (
+        {erro ? (
           <p>
             <img src={warningIcon} alt="Important" />
             Important! <br />
             Fill in all fields
           </p>
-        )}
+        ) : null}
 
         <form onSubmit={handleSubmit2}>
           <fieldset>
