@@ -61,25 +61,41 @@ function TeacherForm() {
     e.preventDefault();
     try {
       const schema = Yup.object().shape({
-        whatsapp: Yup.number().required(),
+        whatsapp: Yup.string().required(),
+        cost: Yup.string().required(),
+        scheduleItems: Yup.array()
+          .of(
+            Yup.object().shape({
+              week_day: Yup.string().required(),
+              from: Yup.string().required(),
+              to: Yup.string().required(),
+            })
+          )
+          .required(),
       });
+
+      console.log(scheduleItems);
+
       let data = {
         whatsapp,
+        cost,
+        scheduleItems,
       };
-      schema.isValid(data).then((valid) => {
-        console.log(valid)
+      //  const isValid = await  schema.isValid(data).then((valid) => valid);
+
+      await schema.validate(data, {
+        abortEarly: false,
       });
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
-
-        setErro(!!errors);
+        console.log(errors);
         return;
       }
       addToast({
         type: "error",
         title: "Registration error",
-        description: "An error occurred while registering, please try again.",
+        description: "swdw",
       });
     }
   }
@@ -154,7 +170,6 @@ function TeacherForm() {
               label="Price"
               type="text"
               placeholder="50"
-              error={erro}
               value={cost}
               onChange={(e) => {
                 setCost(e.target.value);
