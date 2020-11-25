@@ -39,6 +39,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
       return { token, user: JSON.parse(user) };
     }
+    console.log(token)
 
     return {} as AuthState;
   });
@@ -62,11 +63,6 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signUp = useCallback(async ({ name, email, password }) => {
     const response = await api.post("/signup", { name, email, password });
-    // const { token, user } = response.data;
-    // localStorage.setItem("@Blab:token", token);
-    // localStorage.setItem("@Blab:user", JSON.stringify(user));
-    // api.defaults.headers.authorization = `Bearer ${token}`;
-    // setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {

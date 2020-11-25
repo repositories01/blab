@@ -59,6 +59,8 @@ function TeacherForm() {
 
   async function handleSubmit2(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
+    window.scrollTo(0, 0)
+
     try {
       const schema = Yup.object().shape({
         whatsapp: Yup.string().required(),
@@ -88,17 +90,33 @@ function TeacherForm() {
         abortEarly: false,
       });
 
+     const send =  await api.post("classes", {
+        whatsapp,
+        bio,
+        subject,
+        cost: Number(cost),
+        schedule: scheduleItems,
+      });
+
+      console.log(send)
+
       setErro(false);
+      addToast({
+        type: "success",
+        title: "Registration completed!",
+        description: "Successfully!",
+      });
+      history.push('/study')
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
-        setErro(!!errors);
+        setErro(true);
         return;
       }
       addToast({
         type: "error",
         title: "Registration error",
-        description: "swdw",
+        description: "An error occurred while registering, please try again.",
       });
     }
   }
@@ -172,7 +190,7 @@ function TeacherForm() {
               name="cost"
               label="Price"
               type="text"
-              placeholder="50"
+              placeholder="type a integer number"
               value={cost}
               onChange={(e) => {
                 setCost(e.target.value);

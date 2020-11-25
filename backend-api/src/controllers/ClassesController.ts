@@ -1,4 +1,7 @@
 import { Request, Response } from 'express';
+import * as jwt from '../utils/jwt'
+import crypto from "crypto";
+
 
 import db from '../database/connection';
 import convertHourToMinutes from '../utils/convertHourToMinutes';
@@ -41,7 +44,7 @@ export default class ClassesController {
                 .join('users', 'classes.user_id', '=', 'users.id')
                 .select(['classes.*', 'users.*']);
 
-                // return response.status(200).json(classes)
+            // return response.status(200).json(classes)
         }
 
         const classes = await db('classes')
@@ -50,9 +53,14 @@ export default class ClassesController {
     }
 
     async create(request: Request, response: Response) {
+
+        // const [, hash] = request.headers.authorization?.split(' ');
+        // const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
+        // const passCrypto = crypto.createHash("md5").update(password).digest("hex")
+        
+        console.log(request.headers)
+        
         const {
-            name,
-            avatar,
             whatsapp,
             bio,
             subject,
@@ -60,49 +68,50 @@ export default class ClassesController {
             schedule
         } = request.body;
 
-        const trx = await db.transaction();
 
-        try {
-            const insertedUsersIds = await trx('users').insert({
-                name,
-                avatar,
-                whatsapp,
-                bio
-            });
+        // const trx = await db.transaction();
 
-            const user_id = insertedUsersIds[0];
+        // try {
+        //     const insertedUsersIds = await trx('users').insert({
+        //         name,
+        //         avatar,
+        //         whatsapp,
+        //         bio
+        //     });
 
-            const insertedClassesIds = await trx('classes').insert({
-                subject,
-                cost,
-                user_id,
-            });
+        //     const user_id = insertedUsersIds[0];
 
-            const class_id = insertedClassesIds[0];
+        //     const insertedClassesIds = await trx('classes').insert({
+        //         subject,
+        //         cost,
+        //         user_id,
+        //     });
 
-            const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
-                return {
-                    class_id,
-                    week_day: scheduleItem.week_day,
-                    from: convertHourToMinutes(scheduleItem.from),
-                    to: convertHourToMinutes(scheduleItem.to),
-                };
-            })
+        //     const class_id = insertedClassesIds[0];
 
-            await trx('class_schedule').insert(classSchedule);
+        //     const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
+        //         return {
+        //             class_id,
+        //             week_day: scheduleItem.week_day,
+        //             from: convertHourToMinutes(scheduleItem.from),
+        //             to: convertHourToMinutes(scheduleItem.to),
+        //         };
+        //     })
 
-            await trx.commit();
+        //     await trx('class_schedule').insert(classSchedule);
 
-            return response.status(201).send();
+        //     await trx.commit();
 
-        } catch (err) {
-            await trx.rollback();
-            console.log(err)
+        //     return response.status(201).send();
 
-            return response.status(400).json({
-                error: 'Unexpected error while creating new class'
-            })
-        }
+        // } catch (err) {
+        //     await trx.rollback();
+        //     console.log(err)
+
+        //     return response.status(400).json({
+        //         error: 'Unexpected error while creating new class'
+        //     })
+        // }
     }
 }
 
