@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({ label, name, type, error, ...rest }) => {
   return (
     <div className="input-block">
       <label htmlFor={name}>{label}</label>
-      <InputForm isErrored={error} id={name} {...rest} />
+      <InputForm type={type} isErrored={error} id={name} {...rest} />
     </div>
   );
 };

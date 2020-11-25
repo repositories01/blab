@@ -1,8 +1,7 @@
 import React, { useState, useRef, FormEvent, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-import { FormHandles } from "@unform/core";
-import { useForm } from "react-hook-form";
+import { Formik, Form, FormikProps, useFormik } from "formik";
 
 import Input from "../../components/Input";
 import PageHeader from "../../components/PageHeader";
@@ -10,7 +9,6 @@ import Textarea from "../../components/Textarea";
 import Select from "../../components/Select";
 import getValidationErrors from "../../utils/getValidationsErros";
 import api from "../../services/api";
-
 import { useAuth } from "../../hooks/auth";
 import { useToast } from "../../hooks/toast";
 
@@ -23,15 +21,11 @@ import "./styles.css";
 function TeacherForm() {
   const { user } = useAuth();
   const { addToast } = useToast();
-  const { register, handleSubmit, errors } = useForm()
-
-
+  const history = useHistory();
 
   const [whatsapp, setWhatsapp] = useState("");
   const [bio, setBio] = useState("");
   const [cost, setCost] = useState("");
-
-  const history = useHistory();
   const [subject, setSubject] = useState("");
   const [erro, setErro] = useState(false);
 
@@ -47,7 +41,7 @@ function TeacherForm() {
     setScheduleItems(result);
   }, []);
 
-  function setScheduleItemValue(
+  async function setScheduleItemValue(
     position: number,
     field: string,
     value: string
@@ -63,37 +57,32 @@ function TeacherForm() {
     setScheduleItems(updatedScheduleItems);
   }
 
-  const handleSubmit2 = useCallback(
-    (e) => {
- 
-      try {
+  async function handleSubmit2(e: FormEvent<HTMLFormElement>): Promise<void> {
+    e.preventDefault();
+    try {
+      const schema = Yup.object().shape({
+        whatsapp: Yup.number().required(),
+      });
+      let data = {
+        whatsapp,
+      };
+      schema.isValid(data).then((valid) => {
+        console.log(valid)
+      });
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
 
-        console.log(e)
-        const schema = Yup.object().shape({
-          whatsapp: Yup.string().required(),
-        });
-
-        let data = {
-          whatsapp,
-        };
-
-        schema.isValid(data).then((valid) => {});
-      } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          const errors = getValidationErrors(err);
-
-          setErro(!!errors);
-          return;
-        }
-        addToast({
-          type: "error",
-          title: "Registration error",
-          description: "An error occurred while registering, please try again.",
-        });
+        setErro(!!errors);
+        return;
       }
-    },
-    [addToast, history]
-  );
+      addToast({
+        type: "error",
+        title: "Registration error",
+        description: "An error occurred while registering, please try again.",
+      });
+    }
+  }
 
   return (
     <div id="page-teacher-form" className="container">
@@ -111,7 +100,8 @@ function TeacherForm() {
             Fill in all fields
           </p>
         )}
-        <form onSubmit={handleSubmit(handleSubmit2)}>
+
+        <form onSubmit={handleSubmit2}>
           <fieldset>
             <legend>About you</legend>
             <Profile>
