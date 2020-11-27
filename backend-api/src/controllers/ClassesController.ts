@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+// import {verify} from '../utils/jwt'
 import * as jwt from '../utils/jwt'
 import crypto from "crypto";
 
@@ -54,11 +55,10 @@ export default class ClassesController {
 
     async create(request: Request, response: Response) {
 
-        // const [, hash] = request.headers.authorization?.split(' ');
-        // const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
-        // const passCrypto = crypto.createHash("md5").update(password).digest("hex")
-        
-        console.log(request.headers)
+        const [, token] = request.headers.authorization?.split(' ');
+        console.log(token)
+        const decode = await jwt.verify(token);
+        console.log(decode)
         
         const {
             whatsapp,

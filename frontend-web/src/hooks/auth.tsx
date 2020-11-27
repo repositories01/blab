@@ -39,9 +39,11 @@ const AuthProvider: React.FC = ({ children }) => {
 
       return { token, user: JSON.parse(user) };
     }
-    console.log(token)
+    
 
     return {} as AuthState;
+
+    
   });
 
   const signIn = useCallback(async ({ email, password }) => {
@@ -51,12 +53,16 @@ const AuthProvider: React.FC = ({ children }) => {
         password,
       },
     });
-
+    
     const { token } = response.data;
     const user = response.data.user[0];
 
-    localStorage.setItem("@Blab:token", token);
-    localStorage.setItem("@Blab:user", JSON.stringify(user));
+    const toke = localStorage.getItem("@Blab:token");
+    const use = localStorage.getItem("@Blab:user");
+    console.log(toke, use)
+
+    // localStorage.setItem("@Blab:token", token);
+    // localStorage.setItem("@Blab:user", JSON.stringify(user));
 
     setData({ token, user });
   }, []);
