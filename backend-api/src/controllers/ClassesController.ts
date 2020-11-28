@@ -55,18 +55,17 @@ export default class ClassesController {
 
     async create(request: Request, response: Response) {
 
-        const [, token] = request.headers.authorization?.split(' ');
-        console.log(token)
-        const decode = await jwt.verify(token);
-        console.log(decode)
-        
-        const {
-            whatsapp,
-            bio,
-            subject,
-            cost,
-            schedule
-        } = request.body;
+        const token = request.headers;
+      
+
+        try {
+            console.log(token)
+            // const decode = await jwt.verify(token);
+            // console.log(decode)
+        } catch (e) {
+            console.log(e)
+        }
+
 
 
         // const trx = await db.transaction();

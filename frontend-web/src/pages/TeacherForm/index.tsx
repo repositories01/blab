@@ -57,7 +57,7 @@ function TeacherForm() {
     setScheduleItems(updatedScheduleItems);
   }
 
-  async function handleSubmit2(e: FormEvent<HTMLFormElement>): Promise<void> {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     window.scrollTo(0, 0)
 
@@ -98,8 +98,6 @@ function TeacherForm() {
         schedule: scheduleItems,
       });
 
-      console.log(send)
-
       setErro(false);
       addToast({
         type: "success",
@@ -138,7 +136,7 @@ function TeacherForm() {
           </ErrorMessage>
         ) : null}
 
-        <form onSubmit={handleSubmit2}>
+        <form onSubmit={handleSubmit}>
           <fieldset>
             <legend>About you</legend>
             <Profile>
