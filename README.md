@@ -33,10 +33,10 @@ Blab is an application that have goal to connect students and teachers, within i
 
 ### 🤔 Requirements
 
-Dependencies
+**Dependencies**
 
--**Node.js**
--**Git** 
+- Node.js 
+- Git
 
 ### 📝 Step by step
 
