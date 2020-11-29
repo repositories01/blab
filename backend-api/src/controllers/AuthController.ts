@@ -12,7 +12,7 @@ interface IUser {
 export default class AuthController {
 
   async index(req: Request, res: Response) {
-    const users = await db("accounts")
+    const users = await db("users")
     return res.json(users);
   }
 
@@ -29,7 +29,7 @@ export default class AuthController {
 
     try {
 
-      const user: IUser[] = await db("accounts")
+      const user: IUser[] = await db("users")
         .where({ email: email, password: passCrypto })
         .select('name', 'email', 'id')
 
@@ -57,12 +57,12 @@ export default class AuthController {
       password: crypto.createHash("md5").update(password).digest("hex"),
     };
 
-    const user = await db("accounts").where({ email: email });
+    const user = await db("users").where({ email: email });
 
     try {
       if (user.length == 0) {
-        await db("accounts").insert(userObj);
-        const userId: number = await db("accounts")
+        await db("users").insert(userObj);
+        const userId: number = await db("users")
           .where({ email: email })
           .select("id");
 

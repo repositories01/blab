@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
-// import {verify} from '../utils/jwt'
 import * as jwt from '../utils/jwt'
 import crypto from "crypto";
 
+
+import IUser from '../controllers/AuthController'
 
 import db from '../database/connection';
 import convertHourToMinutes from '../utils/convertHourToMinutes';
@@ -55,13 +56,22 @@ export default class ClassesController {
 
     async create(request: Request, response: Response) {
 
-        const token = request.headers;
-      
-
         try {
-            console.log(token)
-            // const decode = await jwt.verify(token);
-            // console.log(decode)
+            const [, token] = request.headers.authorization?.split(' ');
+            const data = await jwt.verify(token);
+
+            const user: IUser[] = await db("users")
+                .where({ id: data.user })
+                .select('name', 'email', 'id')
+
+                console.log(user)
+
+
+
+            const trx = await db.transaction();
+
+
+
         } catch (e) {
             console.log(e)
         }

@@ -59,7 +59,7 @@ function TeacherForm() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
 
     try {
       const schema = Yup.object().shape({
@@ -90,13 +90,19 @@ function TeacherForm() {
         abortEarly: false,
       });
 
-     const send =  await api.post("classes", {
-        whatsapp,
-        bio,
-        subject,
-        cost: Number(cost),
-        schedule: scheduleItems,
-      });
+      const send = await api.post(
+        "classes",
+        {
+          headers: {
+            Authorization: "",
+          },
+          whatsapp,
+          bio,
+          subject,
+          cost: Number(cost),
+          schedule: scheduleItems,
+        }
+      );
 
       setErro(false);
       addToast({
@@ -104,7 +110,7 @@ function TeacherForm() {
         title: "Registration completed!",
         description: "Successfully!",
       });
-      history.push('/study')
+      history.push("/study");
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
