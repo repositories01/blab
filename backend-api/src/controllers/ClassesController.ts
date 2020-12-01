@@ -10,11 +10,8 @@ interface ScheduleItem {
     from: string;
     to: string;
 }
-interface IData {
+interface TokenInterface {
     user: number;
-    iat: number;
-    exp: number
-
 }
 
 export default class ClassesController {
@@ -60,12 +57,14 @@ export default class ClassesController {
     async create(req: Request, res: Response) {
 
         const { whatsapp, bio, subject, cost, schedule } = req.body
-        const headerAuth = req.headers.authorization?.split(' ');
-
-
+        const headerAuth = req.headers.authorization;
         const trx = await db.transaction();
-        const data: IData = jwt.verify(headerAuth[1]);
+        const token = headerAuth ? headerAuth.split(' ')[1] : ''
+        const decoded = jwt.verify(token);
+        const userId = (decoded as TokenInterface).user
 
+        
+        console.log(userId)
         try {
 
 
