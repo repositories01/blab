@@ -12,8 +12,8 @@ interface ScheduleItem {
 }
 interface IData {
     user: number;
-    iat?: number;
-    exp?: number
+    iat: number;
+    exp: number
 
 }
 
@@ -61,16 +61,12 @@ export default class ClassesController {
 
         const { whatsapp, bio, subject, cost, schedule } = req.body
         const headerAuth = req.headers.authorization?.split(' ');
-        
+
 
         const trx = await db.transaction();
-        const data = await jwt.verify(headerAuth[1]);
+        const data: IData = jwt.verify(headerAuth[1]);
+
         try {
-
-            // const user = await db("users")
-            //     .where({ id: data.user })
-            //     .select('name', 'email', 'id');
-
 
 
 
