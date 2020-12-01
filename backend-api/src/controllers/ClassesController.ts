@@ -2,9 +2,6 @@ import { Request, Response } from 'express';
 import * as jwt from '../utils/jwt'
 import crypto from "crypto";
 
-
-import IUser from '../controllers/AuthController'
-
 import db from '../database/connection';
 import convertHourToMinutes from '../utils/convertHourToMinutes';
 
@@ -12,6 +9,12 @@ interface ScheduleItem {
     week_day: number;
     from: string;
     to: string;
+}
+interface IData {
+    user: number;
+    iat?: number;
+    exp?: number
+
 }
 
 export default class ClassesController {
@@ -54,21 +57,29 @@ export default class ClassesController {
         return response.json(classes);
     }
 
-    async create(request: Request, response: Response) {
+    async create(req: Request, res: Response) {
 
+        const { whatsapp, bio, subject, cost, schedule } = req.body
+        const headerAuth = req.headers.authorization?.split(' ');
+        
+
+        const trx = await db.transaction();
+        const data = await jwt.verify(headerAuth[1]);
         try {
-            const [, token] = request.headers.authorization?.split(' ');
-            const data = await jwt.verify(token);
 
-            const user: IUser[] = await db("users")
-                .where({ id: data.user })
-                .select('name', 'email', 'id')
-
-                console.log(user)
+            // const user = await db("users")
+            //     .where({ id: data.user })
+            //     .select('name', 'email', 'id');
 
 
 
-            const trx = await db.transaction();
+
+
+            // const insertedUser = await trx('users').update({
+            //     whatsapp,
+            //     bio
+            // }).where({id: user.id});
+
 
 
 
