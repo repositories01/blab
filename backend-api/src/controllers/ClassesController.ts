@@ -3,6 +3,7 @@ import * as jwt from '../utils/jwt'
 import crypto from "crypto";
 
 import db from '../database/connection';
+
 import convertHourToMinutes from '../utils/convertHourToMinutes';
 
 interface ScheduleItem {
@@ -63,28 +64,48 @@ export default class ClassesController {
         const decoded = jwt.verify(token);
         const userId = (decoded as TokenInterface).user
 
-        
-        console.log(userId)
         try {
+            await trx('users')
+                .update({
+                    whatsapp, bio
+                }).where({ id: userId });
 
 
+            const insertedClassesIds = await trx('classes').insert({
+                subject,
+                cost,
+                user_id: userId,
+            });
+
+            const class_id = insertedClassesIds[0];
+
+            const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
+                return {
+                    class_id,
+                    week_day: scheduleItem.week_day,
+                    from: convertHourToMinutes(scheduleItem.from),
+                    to: convertHourToMinutes(scheduleItem.to),
+                };
+            })
 
 
-            // const insertedUser = await trx('users').update({
-            //     whatsapp,
-            //     bio
-            // }).where({id: user.id});
+            await trx('class_schedule').insert(classSchedule);
 
+            await trx.commit();
 
+            return res.status(201).json('New classe created successfuly')
 
+        } catch (err) {
+            await trx.rollback();
+            console.log(err)
 
-        } catch (e) {
-            console.log(e)
+            return res.status(400).json({
+                error: 'Unexpected error while creating new class'
+            })
         }
 
 
 
-        // const trx = await db.transaction();
 
         // try {
         //     const insertedUsersIds = await trx('users').insert({
