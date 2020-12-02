@@ -89,20 +89,15 @@ function TeacherForm() {
         abortEarly: false,
       });
 
-      const send = await api.post(
-        "classes",
-        {
-          headers: {
-            Authorization: "",
-          },
-          whatsapp,
-          bio,
-          subject,
-          cost: Number(cost),
-          schedule: scheduleItems,
-        }
-      );
+      const send = await api.post("classes", {
+        whatsapp,
+        bio,
+        subject,
+        cost: Number(cost),
+        schedule: scheduleItems,
+      });
 
+      console.log(cost);
       setErro(false);
       addToast({
         type: "success",
@@ -187,11 +182,12 @@ function TeacherForm() {
                 { value: "B2", label: "B2" },
                 { value: "C1", label: "C1" },
                 { value: "C2", label: "C2" },
+                { value: "Native", label: "Native" },
               ]}
             />
             <Input
               name="cost"
-              label="Price"
+              label="Price per hour"
               type="text"
               placeholder="type a integer number"
               value={cost}

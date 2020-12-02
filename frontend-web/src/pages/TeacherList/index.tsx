@@ -22,6 +22,15 @@ function TeacherList() {
   const [week_day, setWeekDay] = useState("");
   const [time, setTime] = useState("");
 
+   // let formatter = new Intl.NumberFormat("en-US", {
+      //   style: "currency",
+      //   currency: "USD",
+      // });
+      // const number = parseFloat(cost);
+      // let price = formatter.format(number);
+      // console.log(price)
+
+
   async function searchTeachers(e: FormEvent) {
     e.preventDefault();
 
