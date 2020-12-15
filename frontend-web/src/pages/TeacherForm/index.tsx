@@ -17,6 +17,7 @@ import { Profile, Avatar, ErrorMessage } from "./style";
 
 import "./styles.css";
 
+
 function TeacherForm() {
   const { user } = useAuth();
   const { addToast } = useToast();
