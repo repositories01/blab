@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import TeacherList from "../../pages/TeacherList";
-import TeacherItem from '../../components/TeacherItem'
+import TeacherItem from "../../components/TeacherItem";
 import { render, fireEvent, wait } from "@testing-library/react";
 
 const mockedHistoryPush = jest.fn();
@@ -25,18 +25,22 @@ jest.mock("../../hooks/auth.tsx", () => {
 
 describe("Testing the teacher list", () => {
   it(" should be able return the teacher list page", () => {
-    const teacherForm = render(
-      <Router>
-        <TeacherList />
-      </Router>
-    );
+    const teacherList = render(<TeacherList />);
 
-    expect(teacherForm).toBeTruthy();
+    expect(teacherList).toBeTruthy();
   });
 
+  it("should be to see the teacher item component", () => {
+    const teacherMock = {
+      id: 2,
+      bio: "mock",
+      cost: "12,99",
+      name: "name",
+      subject: "sub",
+      whatsapp: "121212",
+    };
 
-  it('should be to see the teacher item component', () => {
-
-    
-  })
+    const teacherList = render( <TeacherList />);
+    expect(teacherList).toContain(<TeacherItem teacher={teacherMock} />);
+  });
 });
