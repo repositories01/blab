@@ -40,7 +40,8 @@ describe("Testing the teacher list", () => {
       whatsapp: "121212",
     };
 
-    const teacherList = render( <TeacherList />);
-    expect(teacherList).toContain(<TeacherItem teacher={teacherMock} />);
+    const te = render( <TeacherList />);
+   
+    expect(te).toHaveClass('teacher-item');
   });
 });
