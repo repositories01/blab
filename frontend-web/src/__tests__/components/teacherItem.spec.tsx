@@ -5,3 +5,8 @@ import TeacherItem from "../../components/TeacherItem";
 import { render, fireEvent, wait } from "@testing-library/react";
 
 
+describe("teacher item render", () => {
+    it("should be render the teacher item", () => {
+        
+    })
+})
