@@ -7,6 +7,7 @@ import TeacherList from "../pages/TeacherList";
 import TeacherForm from "../pages/TeacherForm";
 import Login from "../pages/Login/index";
 import Signup from "../pages/Signup/index";
+import User from '../pages/User'
 
 const Routes: React.FC = () => (
   <Switch>
@@ -15,7 +16,7 @@ const Routes: React.FC = () => (
     <Route path="/signup" component={Signup} />
     <Route path="/study" component={TeacherList} isPrivate={false} />
     <Route path="/give-classes" component={TeacherForm} isPrivate />
-
+    <Route path="/user" component={User} isPrivate />
   </Switch>
 );
 
