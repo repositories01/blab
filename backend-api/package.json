@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "build": "babel src --extensions \"*.js,*.ts\" --out-dir dist --copy-files",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
     "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
   },
@@ -34,6 +34,5 @@
     "sequelize": "^6.3.4",
     "sequelize-cli": "^6.2.0",
     "sqlite3": "^5.0.0"
-  },
-  "type": "module"
+  }
 }
