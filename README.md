@@ -18,8 +18,7 @@
 </h3>
 
 ## 💭 About
-340/5000
-Blab is an application that aims to connect students and teachers, it provides a space for teachers to record their availability during the week, the phone (WhatsApp) and also the cost of the hour / class. For the student it is possible to find tutors to contact them via WhatsApp and also save as favorites.
+Blab is an application that have goals to connect students and teachers, it provides a space for teachers to record their availability during the week, the phone (WhatsApp) and also the cost of the hour / class. For the student it is possible to find tutors to contact them via WhatsApp and also save as favorites.
 
 
 ## 👨‍💻 Stack technology used
