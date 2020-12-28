@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
-import { FiPower } from "react-icons/fi";
+import { FiPower, FiArrowLeft } from "react-icons/fi";
 import logoImg from "../../assets/images/logo.png";
 import backIcon from "../../assets/images/icons/back.svg";
 
@@ -30,7 +30,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     <header className="page-header">
       <div className="top-bar-container">
         <Link to={to === "/study" ? `${to}` : "/"}>
-          <img src={backIcon} alt="Voltar" />
+          <FiArrowLeft/>
         </Link>
 
         <img src={logoImg} alt="blab" />
@@ -40,7 +40,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         </Link>
         {user && (
           <>
-          {console.log(user)}
+        
             <Button type="button" onClick={signOut}>
               <FiPower />
             </Button>
