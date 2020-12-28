@@ -16,3 +16,9 @@ svg{
 }
 
 `;
+
+export const Profile = styled.div`
+
+
+
+`;

@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
-import {FiPower} from 'react-icons/fi'
+import { FiPower } from "react-icons/fi";
 import logoImg from "../../assets/images/logo.png";
 import backIcon from "../../assets/images/icons/back.svg";
 
 import "./styles.css";
-import {Button} from './style'
+import { Button, Profile } from "./style";
 
 interface PageHeaderProps {
   linkName?: string;
@@ -33,16 +33,20 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           <img src={backIcon} alt="Voltar" />
         </Link>
 
-
         <img src={logoImg} alt="blab" />
-        
+
         <Link className="link-name" to={`${to}`}>
           <span>{linkName}</span>
         </Link>
         {user && (
-          <Button type="button" onClick={signOut}>
-            <FiPower />
-          </Button>
+          <>
+          {console.log(user)}
+            <Button type="button" onClick={signOut}>
+              <FiPower />
+            </Button>
+
+            <Profile></Profile>
+          </>
         )}
       </div>
 
