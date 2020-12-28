@@ -1,4 +1,10 @@
-import React, { useState, useRef, FormEvent, useCallback } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  useRef,
+  FormEvent,
+  useCallback,
+} from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -12,14 +18,14 @@ import { useAuth } from "../../hooks/auth";
 import { useToast } from "../../hooks/toast";
 
 import warningIcon from "../../assets/images/icons/warning.svg";
-import { FiMinusCircle } from "react-icons/fi";
-import { Profile, Avatar, ErrorMessage } from "./style";
+import defaultImg from "../../assets/images/default_user.png";
+import { FiMinusCircle, FiCamera } from "react-icons/fi";
+import { Profile, ErrorMessage, AvatarInput } from "./style";
 
 import "./styles.css";
 
-
 function TeacherForm() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const { addToast } = useToast();
   const history = useHistory();
 
@@ -120,6 +126,24 @@ function TeacherForm() {
     }
   }
 
+  const handleAvatarChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) {
+        const data = new FormData();
+
+        data.append("avatar", e.target.files[0]);
+        api.patch("/users/avatar", data).then((response) => {
+          updateUser(response.data);
+
+          addToast({
+            type: "success",
+            title: "Avatar atualizado",
+          });
+        });
+      }
+    },
+    [addToast, updateUser]
+  );
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
@@ -141,15 +165,23 @@ function TeacherForm() {
           <fieldset>
             <legend>About you</legend>
             <Profile>
-              <Avatar>
-                <img src="https://via.placeholder.com/150" alt="" />
-                <span>{user.name}</span>
-              </Avatar>
+              <AvatarInput>
+                <img src={defaultImg} alt="" />
+                <label htmlFor="avatar">
+                  <FiCamera />
+                  <input
+                    type="file"
+                    id="avatar"
+                    onChange={handleAvatarChange}
+                  />
+                </label>
+              </AvatarInput>
+              <span>{user.name}</span>
 
               <Input
                 name="whatsapp"
                 label="Whatsapp"
-                placeholder="( 21 ) _  _ _ _ _   _ _ _ _ "
+                placeholder="(   ) _  _ _ _ _   _ _ _ _ "
                 value={whatsapp}
                 onChange={(e) => {
                   setWhatsapp(e.target.value);
@@ -190,7 +222,7 @@ function TeacherForm() {
               name="cost"
               label="Price per hour"
               type="text"
-              placeholder="type a integer number"
+              placeholder="$"
               value={cost}
               onChange={(e) => {
                 setCost(e.target.value);
