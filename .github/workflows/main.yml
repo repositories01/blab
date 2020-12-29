@@ -33,3 +33,4 @@ jobs:
           key: ${{secrets.SSH_KEY}} 
           source: "server/dist"
           target: "test"
+          
