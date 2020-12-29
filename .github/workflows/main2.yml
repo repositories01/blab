@@ -1,0 +1,36 @@
+
+
+name: CI2
+
+on:
+  push:
+    branches: [ server-deploy ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+        with: 
+          node-version: 12.x
+          
+      - name: Install dependencies
+        run: cd server && yarn
+        
+      - name: Run build
+        run: cd server && yarn build
+      
+      - name: Copy dist to digital ocean
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{secrets.SSH_KEY}} 
+          source: "server/dist"
+          target: "test"
