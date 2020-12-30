@@ -33,7 +33,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{secrets.SSH_KEY}} 
           source: "server,!node_modules"
-          target: "~/app/blab/server"
+          target: "~/app/blab"
           use_insecure_cipher : true
           
       - name: Install dependecies on digital ocean
