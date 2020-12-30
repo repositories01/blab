@@ -45,14 +45,14 @@ jobs:
           key: ${{secrets.SSH_KEY}} 
           script: cd ~/app/blab/server && yarn 
             
-      - name: Run migrations on digital ocean
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          USERNAME: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{secrets.SSH_KEY}} 
-          script: cd ~/app/blab/server && ./node_modules/bin/knex:migrate
+#       - name: Run migrations on digital ocean
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.SSH_HOST }}
+#           USERNAME: ${{ secrets.SSH_USER }}
+#           port: ${{ secrets.SSH_PORT }}
+#           key: ${{secrets.SSH_KEY}} 
+#           script: cd ~/app/blab/server && ./node_modules/bin/knex:migrate
                   
       - name: Restart pm2
         uses: appleboy/ssh-action@master
