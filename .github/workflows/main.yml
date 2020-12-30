@@ -30,9 +30,9 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           USERNAME: ${{ secrets.SSH_USER }}
-          port: 22
+          port: ${{ secrets.SSH_PORT }}
           key: ${{secrets.SSH_KEY}} 
-          source: "server"
+          source: "server,!node_modules"
           target: "~/app/blab/backend-api"
           use_insecure_cipher : true
           
