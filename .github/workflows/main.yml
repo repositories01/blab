@@ -36,14 +36,19 @@ jobs:
           target: "~/app/blab"
 #           use_insecure_cipher : true
           
-      - name: Install dependecies on digital ocean
+      - name: Install dependecies, run migration and restart server on digital ocean
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           USERNAME: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{secrets.SSH_KEY}} 
-          script: cd ~/app/blab/server && yarn 
+          script: |
+           cd ~/app/blab/server
+           yarn 
+           ./node_modules/bin/knex:migrate
+            pm2 restart blab-api
+           
             
 #       - name: Run migrations on digital ocean
 #         uses: appleboy/ssh-action@master
@@ -54,11 +59,11 @@ jobs:
 #           key: ${{secrets.SSH_KEY}} 
 #           script: cd ~/app/blab/server && ./node_modules/bin/knex:migrate
                   
-      - name: Restart pm2
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          USERNAME: ${{ secrets.SSH_USER }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{secrets.SSH_KEY}} 
-          script: pm2 restart blab-api
+#       - name: Restart pm2
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.SSH_HOST }}
+#           USERNAME: ${{ secrets.SSH_USER }}
+#           port: ${{ secrets.SSH_PORT }}
+#           key: ${{secrets.SSH_KEY}} 
+#           script: pm2 restart blab-api
