@@ -11,7 +11,6 @@ import Select from "../../components/Select";
 import api from "../../services/api";
 
 import "./styles.css";
-import { resolve } from "dns";
 
 function TeacherList() {
   const formRef = useRef<FormHandles>(null);
@@ -21,15 +20,6 @@ function TeacherList() {
   const [subject, setSubject] = useState("");
   const [week_day, setWeekDay] = useState("");
   const [time, setTime] = useState("");
-
-   // let formatter = new Intl.NumberFormat("en-US", {
-      //   style: "currency",
-      //   currency: "USD",
-      // });
-      // const number = parseFloat(cost);
-      // let price = formatter.format(number);
-      // console.log(price)
-
 
   async function searchTeachers(e: FormEvent) {
     e.preventDefault();
