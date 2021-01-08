@@ -3,6 +3,7 @@ import ClassesController from "./controllers/ClassesController";
 import ConnectionsController from "./controllers/ConnectionsController";
 import AuthController from "./controllers/AuthController";
 import UpdateAvatar from './controllers/UpdateAvatar'
+import authMiddleware from './middlewares/auth'
 const routes = express.Router();
 const classesController = new ClassesController();
 const connectionsController = new ConnectionsController();
@@ -12,16 +13,14 @@ const updateAvatar = new UpdateAvatar();
 
 
 routes.get("/classes", classesController.index);
-routes.post("/classes", classesController.create);
-
 routes.get("/connections", connectionsController.index);
-routes.post("/connections", connectionsController.create);
-
-
 routes.get("/login", authController.login);
-routes.post("/signup", authController.signup);
-routes.get('/index', authController.index);
+routes.get('/index', authController.index)
 
+routes.use(authMiddleware);
+routes.post("/classes", classesController.create);
+routes.post("/connections", connectionsController.create);
+routes.post("/signup", authController.signup);
 routes.patch('/avatar', updateAvatar.index)
 
 

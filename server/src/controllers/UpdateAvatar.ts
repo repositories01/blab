@@ -1,7 +1,14 @@
 import { Request, Response } from "express";
 import multer from 'multer'
 import uploadConfig from '../config/upload'
+import db from "../database/connection";
 import UpdateUserAvatarService from '../services/UpdateAvatarUserService'
+
+interface IUser {
+    name: string,
+    email: string,
+    id: number
+}
 
 export default class UpdateAvatar {
 
@@ -9,17 +16,20 @@ export default class UpdateAvatar {
 
         const upload = multer(uploadConfig)
 
+        try {
 
-        // routes.patch('/avatar', upload.single('avatar'),async(req, res) => {
-        //     try{
-        //         const updateUserAvatarService = new UpdateUserAvatarService()
+            // const updateUserAvatarService = new UpdateUserAvatarService()
+            // const user: IUser[] = await db("users")
+            // .where({ email: email})
+            // .select('id')
 
-        //     }catch(e){
-        //         return res.status(400).json({err: e.message})
+            return response.json('ok')
 
-        //     }
-        //     return res.json('ok')
-        // })
+        } catch (e) {
+            return response.status(400).json({ err: e.message })
+
+        }
+
+
     }
-
 }

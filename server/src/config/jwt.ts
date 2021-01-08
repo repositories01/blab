@@ -6,7 +6,6 @@ interface UserId {
 }
 
 
-
 const secret = "a21za2FtbHNkYW1rbGRhc2Q";
 
 export const sign = (payload: UserId) => {
