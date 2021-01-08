@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as jwt from '../utils/jwt'
+import * as jwt from '../config/jwt'
 import crypto from "crypto";
 
 import db from '../database/connection';

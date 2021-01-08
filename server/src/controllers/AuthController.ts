@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
 import db from "../database/connection";
-import * as jwt from '../utils/jwt'
+import * as jwt from '../config/jwt'
 
 interface IUser {
   name: string,
