@@ -21,4 +21,8 @@ routes.get("/login", authController.login);
 routes.post("/signup", authController.signup);
 routes.get('/index', authController.index);
 
+routes.patch('/avatar', (req, res) => {
+    return res.json('ok')
+})
+
 export default routes;
