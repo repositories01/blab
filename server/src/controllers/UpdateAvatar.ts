@@ -17,7 +17,6 @@ export default class UpdateAvatar {
         const upload = multer(uploadConfig)
 
         try {
-
             // const updateUserAvatarService = new UpdateUserAvatarService()
             // const user: IUser[] = await db("users")
             // .where({ email: email})

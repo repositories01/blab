@@ -21,8 +21,7 @@ export default function ensureAuth(req: Request, res: Response, next: NextFuncti
     req.user = {
       id: userId
     }
-
-
+    
     return next();
   } catch (err) {
     throw new Error('invalid token');
