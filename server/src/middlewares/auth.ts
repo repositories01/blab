@@ -1,25 +1,25 @@
 import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
-// import jwtConfig from '../config/jwt';
+import { secret } from '../config/jwt';
 
 export default async (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const headerAuth = req.headers.authorization;
 
-  if (!authHeader) {
+  if (!headerAuth) {
     return res.status(401).json({ error: 'Token not provided' });
   }
- 
-//   const [, token] = authHeader.split(' ');
 
+  const [, hash] = req.headers.authorization?.split(' ');
+  // const teste = Buffer.from(hash, 'base64').toString().split(':');
   try {
 
-    console.log(authHeader)
-    // const decoded = await promisify(jwt.verify)(token, authConfig.secret);
-
+    const decoded = await promisify(jwt.verify)(hash);
+    console.log(decoded)
     // req.userId = decoded.id;
 
     return next();
   } catch (err) {
-    return res.status(401).json({ error:'Token invalid'});
+    console.log(err)
+    return res.status(401).json({ error: 'Token invalid' });
   }
 };
