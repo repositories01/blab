@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from 'express';
 import * as jwt from '../config/jwt'
 
 
@@ -5,10 +6,10 @@ interface TokenInterface {
   user: number;
 }
 
-export default async (req, res, next) => {
+export default function ensureAuth(req: Request, res: Response, next: NextFunction): void {
   const headerAuth = req.headers.authorization;
   if (!headerAuth) {
-    return res.status(401).json({ error: 'Token not provided' });
+    throw new Error('Token is missing');
   }
 
   try {
@@ -16,11 +17,16 @@ export default async (req, res, next) => {
     const token = headerAuth ? headerAuth.split(' ')[1] : ''
     const decoded = jwt.verify(token);
     const userId = (decoded as TokenInterface).user
-    next();
-    return userId;
+
+    req.user = {
+      id: userId
+    }
+
+
+    return next();
   } catch (err) {
-    console.log(err)
-    return res.status(401).json({ error: 'Token invalid' });
+    throw new Error('invalid token');
+
   }
 
 };
