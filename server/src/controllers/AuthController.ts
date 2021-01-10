@@ -22,7 +22,6 @@ export default class AuthController {
 
     const headerAuth = req.headers.authorization;
     const hash = headerAuth ? headerAuth.split(' ')[1] : ''
-    // const [, hash] = req.headers.authorization?.split(' ');
     const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
     const passCrypto = crypto.createHash("md5").update(password).digest("hex")
 

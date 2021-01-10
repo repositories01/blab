@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import * as jwt from '../config/jwt'
-import crypto from "crypto";
 
 import db from '../database/connection';
 
@@ -11,7 +10,7 @@ interface ScheduleItem {
     from: string;
     to: string;
 }
-interface TokenInterface {
+ interface TokenInterface {
     user: number;
 }
 
