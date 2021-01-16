@@ -83,7 +83,7 @@ function TeacherList() {
 
       <main>
         {teachers.map((teacher: Teacher) => {
-          return <TeacherItem key={teacher.id} teacher={teacher} />;
+          return <TeacherItem data-testid="teacher-item" key={teacher.id} teacher={teacher} />;
         })}
       </main>
     </div>

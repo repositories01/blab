@@ -32,7 +32,7 @@ describe("Testing the teacher list", () => {
 
   it("should be to see the teacher item component", () => {
 
-    const {container} = render(<TeacherList />)
+    render(<TeacherList />)
     const teacherMock = {
       id: 2,
       bio: "mock",
@@ -42,10 +42,12 @@ describe("Testing the teacher list", () => {
       whatsapp: "121212",
     };
 
+
+    const teacherItem = screen.getByTestId("teacher-item")
+    console.log(teacherItem)
     //  render( <TeacherItem teacher={teacherMock} />);
    
     // expect(te).toHaveClass('teacher-item');
-    console.log(container)
   });
 
 });
