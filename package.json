@@ -1,0 +1,21 @@
+{
+  "name": "blab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:web": "npm --prefix web run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagomedina/blab.git"
+  },
+  
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiagomedina/blab/issues"
+  },
+  "homepage": "https://github.com/thiagomedina/blab#readme"
+}
