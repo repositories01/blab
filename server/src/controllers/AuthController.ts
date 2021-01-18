@@ -3,10 +3,14 @@ import crypto from "crypto";
 import db from "../database/connection";
 import * as jwt from '../config/jwt'
 
-interface IUser {
-  name: string,
-  email: string,
-  id: number
+export interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  avatar: string;
+  whatsapp: string;
+  bio: string;
+  password: string;
 }
 
 export default class AuthController {
