@@ -12,10 +12,11 @@ interface Request {
 }
 
 class UpdateUserAvatarService {
-   public async execute({ user_id, avatarFileName }: Request): Promise<void> {
+   public async execute({ user_id, avatarFileName }: Request): Promise<IUser[]> {
 
       const user: IUser[] = await db("users")
          .where({ id: user_id })
+      delete user[0].password
 
 
       if (!user[0]) {
@@ -23,15 +24,23 @@ class UpdateUserAvatarService {
       }
 
       if (user[0].avatar) {
-
          const userAvatarfilePath = path.join(uploadConfig.directory, user[0].avatar)
          const userAvatarFileExists = await fs.promises.stat(userAvatarfilePath)
+         console.log(userAvatarfilePath)
 
          if (userAvatarFileExists) {
+
             await fs.promises.unlink(userAvatarfilePath)
+
          }
       }
 
+      await db('users')
+         .update({
+            avatar: avatarFileName
+         }).where({ id: user_id });
+
+      return user
 
    }
 
