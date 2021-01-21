@@ -19,11 +19,11 @@ routes.get("/classes", classesController.index);
 routes.get("/connections", connectionsController.index);
 routes.get("/login", authController.login);
 routes.get('/index', authController.index)
+routes.post("/signup", authController.signup);
 
 routes.use(authMiddleware);
 routes.post("/classes", classesController.create);
 routes.post("/connections", connectionsController.create);
-routes.post("/signup", authController.signup);
 routes.patch('/avatar', upload.single('avatar'), updateAvatar.index)
 
 
