@@ -22,9 +22,9 @@ routes.get('/index', authController.index)
 routes.post("/signup", authController.signup);
 
 routes.use(authMiddleware);
+routes.patch('/avatar', upload.single('avatar'), updateAvatar.index)
 routes.post("/classes", classesController.create);
 routes.post("/connections", connectionsController.create);
-routes.patch('/avatar', upload.single('avatar'), updateAvatar.index)
 
 
 export default routes;

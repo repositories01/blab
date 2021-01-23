@@ -8,9 +8,10 @@ interface TokenInterface {
 
 export default function ensureAuth(req: Request, res: Response, next: NextFunction): void {
   const headerAuth = req.headers.authorization;
-  if (!headerAuth) {
-    throw new Error('Token is missing');
-  }
+
+  // if (!headerAuth) {
+  //   throw new Error('Token is missing');
+  // }
 
   try {
 
@@ -24,6 +25,7 @@ export default function ensureAuth(req: Request, res: Response, next: NextFuncti
     
     return next();
   } catch (err) {
+    console.log(err)
     throw new Error('invalid token');
 
   }

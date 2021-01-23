@@ -50,6 +50,8 @@ export default class ClassesController {
         }
 
         const classes = await db('classes')
+        .join('users', 'classes.user_id', '=', 'users.id')
+        .select(['classes.*', 'users.*']);
 
         return response.json(classes);
     }
