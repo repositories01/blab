@@ -7,11 +7,12 @@ export default class UpdateAvatar {
         try {
             const updateUserAvatar = new UpdateUserAvatarService();
 
-            await updateUserAvatar.execute({
+            const user = await updateUserAvatar.execute({
                 user_id: request.user.id,
                 avatarFileName: request.file.filename,
             });
-            return response.json("ok");
+
+            return response.json(user[0]);
         } catch (e) {
             return response.status(400).json({ err: e.message });
         }

@@ -132,14 +132,12 @@ function TeacherForm() {
         const data = new FormData();
 
         data.append("avatar", e.target.files[0]);
-        api.patch("/users/avatar", data).then((response) => {
+        api.patch("/avatar", data).then((response) => {
           updateUser(response.data);
-
-          addToast({
-            type: "success",
-            title: "Avatar atualizado",
-          });
+          console.log(response.data)
         });
+
+        console.log(user.avatar)
       }
     },
     [addToast, updateUser]
@@ -166,7 +164,7 @@ function TeacherForm() {
             <legend>About you</legend>
             <Profile>
               <AvatarInput>
-                <img src={defaultImg} alt="" />
+                <img src={user.avatar ? user.avatar : defaultImg} alt="" />
                 <label htmlFor="avatar">
                   <FiCamera />
                   <input

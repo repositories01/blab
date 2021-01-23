@@ -40,7 +40,12 @@ class UpdateUserAvatarService {
             avatar: avatarFileName
          }).where({ id: user_id });
 
-      return user
+
+      const userUpdated: IUser[] = await db("users")
+         .where({ id: user_id })
+      delete user[0].password
+      
+     return userUpdated
 
    }
 
