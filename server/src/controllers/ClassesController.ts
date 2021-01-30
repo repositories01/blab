@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import * as jwt from '../utils/jwt'
-import crypto from "crypto";
+import * as jwt from '../config/jwt'
 
 import db from '../database/connection';
 
@@ -11,7 +10,7 @@ interface ScheduleItem {
     from: string;
     to: string;
 }
-interface TokenInterface {
+ interface TokenInterface {
     user: number;
 }
 
@@ -51,6 +50,8 @@ export default class ClassesController {
         }
 
         const classes = await db('classes')
+        .join('users', 'classes.user_id', '=', 'users.id')
+        .select(['classes.*', 'users.*']);
 
         return response.json(classes);
     }

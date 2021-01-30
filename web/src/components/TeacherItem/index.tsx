@@ -7,7 +7,7 @@ import { parseCurrencyValueToUSD } from "../../utils/parseCurrencyValue";
 
 export interface Teacher {
   id: number;
-  avatar?: string;
+  avatar: string;
   bio: string;
   cost: string;
   name: string;
@@ -30,7 +30,8 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
   return (
     <article className="teacher-item">
       <header>
-        <img src={teacher.avatar} alt={teacher.name} />
+        {console.log(teacher)}
+        <img src={ `http://localhost:3333/files/${teacher.avatar}` } alt={teacher.name} />
         <div>
           <strong>{teacher.name}</strong>
           <span>{teacher.subject}</span>

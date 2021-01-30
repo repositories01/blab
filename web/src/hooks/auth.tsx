@@ -5,7 +5,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
-  // avatar_url: string;
+  avatar: string;
 }
 
 interface AuthState {
@@ -35,8 +35,9 @@ const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem("@Blab:user");
 
     if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.authorization = `Bearer ${token}`; 
 
+      
       return { token, user: JSON.parse(user) };
     }
     
@@ -56,6 +57,7 @@ const AuthProvider: React.FC = ({ children }) => {
     
     const { token } = response.data;
     const user = response.data.user[0];
+    
 
     localStorage.setItem("@Blab:token", token);
     localStorage.setItem("@Blab:user", JSON.stringify(user));
@@ -77,11 +79,12 @@ const AuthProvider: React.FC = ({ children }) => {
   const updateUser = useCallback(
     (user: User) => {
       localStorage.setItem("@Blab:user", JSON.stringify(user));
-
+        console.log(user)
       setData({
         token: data.token,
         user,
       });
+    
     },
     [setData, data.token]
   );

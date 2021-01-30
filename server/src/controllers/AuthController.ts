@@ -1,12 +1,16 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
 import db from "../database/connection";
-import * as jwt from '../utils/jwt'
+import * as jwt from '../config/jwt'
 
-interface IUser {
-  name: string,
-  email: string,
-  id: number
+export interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  avatar: string;
+  whatsapp: string;
+  bio: string;
+  password: string;
 }
 
 export default class AuthController {
@@ -22,7 +26,6 @@ export default class AuthController {
 
     const headerAuth = req.headers.authorization;
     const hash = headerAuth ? headerAuth.split(' ')[1] : ''
-    // const [, hash] = req.headers.authorization?.split(' ');
     const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
     const passCrypto = crypto.createHash("md5").update(password).digest("hex")
 

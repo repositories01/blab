@@ -1,6 +1,6 @@
-import React, { InputHTMLAttributes, useEffect, useRef } from "react";
+import React, { InputHTMLAttributes } from "react";
 
-import { InputForm, Error } from "./style";
+import { InputForm } from "./style";
 
 import "./styles.css";
 

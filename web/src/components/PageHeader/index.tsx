@@ -1,11 +1,10 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
 import { FiPower, FiArrowLeft } from "react-icons/fi";
 import logoImg from "../../assets/images/logo.png";
-import backIcon from "../../assets/images/icons/back.svg";
 
 import "./styles.css";
 import { Button, Profile } from "./style";
