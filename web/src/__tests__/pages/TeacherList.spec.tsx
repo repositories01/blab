@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import TeacherList from "../../pages/TeacherList";
 import TeacherItem from "../../components/TeacherItem";
-import { render, fireEvent, wait } from "@testing-library/react";
+import { render, fireEvent, wait, screen } from "@testing-library/react";
+import { debug } from "console";
 
 const mockedHistoryPush = jest.fn();
 
@@ -30,7 +31,9 @@ describe("Testing the teacher list", () => {
     expect(teacherList).toBeTruthy();
   });
 
-  it("should be to see the teacher item component", () => {
+  it("should not be able to seet the teacher item component", () => {
+
+    const { container } = render(<TeacherList />)
     const teacherMock = {
       id: 2,
       bio: "mock",
@@ -40,10 +43,11 @@ describe("Testing the teacher list", () => {
       whatsapp: "121212",
     };
 
-    const te = render( <TeacherList />);
-   
+
+    // const teacherItem = screen.getByTestId("teacher-item")
+    //  render( <TeacherItem teacher={teacherMock} />);
+
     // expect(te).toHaveClass('teacher-item');
-    console.log(te)
   });
 
 });

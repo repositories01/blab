@@ -11,7 +11,6 @@ import Select from "../../components/Select";
 import api from "../../services/api";
 
 import "./styles.css";
-import { resolve } from "dns";
 
 function TeacherList() {
   const formRef = useRef<FormHandles>(null);
@@ -21,15 +20,6 @@ function TeacherList() {
   const [subject, setSubject] = useState("");
   const [week_day, setWeekDay] = useState("");
   const [time, setTime] = useState("");
-
-   // let formatter = new Intl.NumberFormat("en-US", {
-      //   style: "currency",
-      //   currency: "USD",
-      // });
-      // const number = parseFloat(cost);
-      // let price = formatter.format(number);
-      // console.log(price)
-
 
   async function searchTeachers(e: FormEvent) {
     e.preventDefault();
@@ -48,6 +38,7 @@ function TeacherList() {
   const loadApi = useCallback(async () => {
     const response = await api.get("classes");
     setTeachers(response.data);
+    console.log(response.data)
 
   }, []);
 
@@ -93,7 +84,7 @@ function TeacherList() {
 
       <main>
         {teachers.map((teacher: Teacher) => {
-          return <TeacherItem key={teacher.id} teacher={teacher} />;
+          return <TeacherItem data-testid="teacher-item" key={teacher.id} teacher={teacher} />;
         })}
       </main>
     </div>
