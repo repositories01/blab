@@ -31,11 +31,8 @@ describe("Testing the teacher list", () => {
     expect(teacherList).toBeTruthy();
   });
 
-  it("should not be able to seet the teacher item component", () => {
-
-    const { container } = render(<TeacherList />)
-
-    console.log(container)
+  it("should not be able to see the teacher item component", () => {
+    
     const teacherMock = {
       id: 2,
       bio: "mock",
@@ -44,10 +41,15 @@ describe("Testing the teacher list", () => {
       subject: "sub",
       whatsapp: "121212",
     };
+    const { container } = render(<TeacherList />)
+
+    console.log(container)
 
 
-    const teacherItem = screen.getByTestId("teacher-item")
-     render( <TeacherItem teacher={teacherMock} />);
+    // const teacherItem = screen.getByTestId("teacher-item")
+    //  render( <TeacherItem teacher={teacherMock} />);
+
+    //  console.log(teacherItem)
 
     // expect(te).toHaveClass('teacher-item');
   });

@@ -38,7 +38,6 @@ function TeacherList() {
   const loadApi = useCallback(async () => {
     const response = await api.get("classes");
     setTeachers(response.data);
-    console.log(response.data)
 
   }, []);
 
