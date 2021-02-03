@@ -1,10 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import TeacherList from "../../pages/TeacherList";
 import TeacherItem from "../../components/TeacherItem";
 import { render, fireEvent, wait, screen } from "@testing-library/react";
 import { debug } from "console";
 
+import { act } from 'react-dom/test-utils';
+
+const whenStable = async () =>
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
 const mockedHistoryPush = jest.fn();
 
 jest.mock("react-router-dom", () => {
@@ -27,23 +32,27 @@ jest.mock("../../hooks/auth.tsx", () => {
 describe("Testing the teacher list", () => {
   it(" should be able return the teacher list page", () => {
     const teacherList = render(<TeacherList />);
-
     expect(teacherList).toBeTruthy();
   });
 
   it("should not be able to see the teacher item component", () => {
+
+const teacherMock = {
+  id: 2,
+  bio: "mock",
+  cost: "12,99",
+  name: "name",
+  subject: "sub",
+  whatsapp: "121212",
+};
     
-    const teacherMock = {
-      id: 2,
-      bio: "mock",
-      cost: "12,99",
-      name: "name",
-      subject: "sub",
-      whatsapp: "121212",
-    };
+    const props = { loadApi: jest.fn() };
+ 
     const { container } = render(<TeacherList />)
 
-    console.log(container)
+    const wrapper = shallow(<TeacherList {...props}></TeacherList>);
+
+
 
 
     // const teacherItem = screen.getByTestId("teacher-item")
