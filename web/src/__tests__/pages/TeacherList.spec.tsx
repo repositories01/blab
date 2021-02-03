@@ -34,6 +34,8 @@ describe("Testing the teacher list", () => {
   it("should not be able to seet the teacher item component", () => {
 
     const { container } = render(<TeacherList />)
+
+    console.log(container)
     const teacherMock = {
       id: 2,
       bio: "mock",
@@ -44,8 +46,8 @@ describe("Testing the teacher list", () => {
     };
 
 
-    // const teacherItem = screen.getByTestId("teacher-item")
-    //  render( <TeacherItem teacher={teacherMock} />);
+    const teacherItem = screen.getByTestId("teacher-item")
+     render( <TeacherItem teacher={teacherMock} />);
 
     // expect(te).toHaveClass('teacher-item');
   });

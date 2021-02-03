@@ -7,7 +7,7 @@ import { parseCurrencyValueToUSD } from "../../utils/parseCurrencyValue";
 
 export interface Teacher {
   id: number;
-  avatar: string;
+  avatar?: string;
   bio: string;
   cost: string;
   name: string;
