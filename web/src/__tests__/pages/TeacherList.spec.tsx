@@ -50,7 +50,7 @@ const teacherMock = {
  
     const { container } = render(<TeacherList />)
 
-    const wrapper = shallow(<TeacherList {...props}></TeacherList>);
+    // const wrapper = shallow(<TeacherList {...props}></TeacherList>);
 
 
 
