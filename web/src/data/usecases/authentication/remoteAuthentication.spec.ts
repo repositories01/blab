@@ -1,14 +1,10 @@
 import RemoteAuthentication from './remoteAuthentication'
-import { HttpPostClient } from '../../protocols/http/httpPostClient'
-describe("RemoteAuthentication", () => {
-    it("Should to call HttpPostClient with correct URL", async () => {
+import { HttpPostClientSpy } from '../../test/mockHttpClient'
 
-        class HttpPostClientSpy implements HttpPostClient {
-            url?: string
-            async post(url: string): Promise<void> {
-                this.url = url
-            }
-        }
+
+describe("RemoteAuthentication", () => {
+
+    it("Should to call HttpPostClient with correct URL", async () => {
         const url = 'any_url';
         const httpPostClient = new HttpPostClientSpy()
         const systemUnderTest = new RemoteAuthentication(url, httpPostClient)
