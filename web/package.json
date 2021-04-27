@@ -29,11 +29,10 @@
     "uuidv4": "^6.2.5",
     "yup": "^0.29.3"
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --passWithNoTests",
     "test:coverage": "yarn test --coverage --watchAll false",
     "eject": "react-scripts eject"
   },
