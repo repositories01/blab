@@ -32,7 +32,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --passWithNoTests",
+    "test": "react-scripts test",
+    "test:jest": "jest",
     "test:coverage": "yarn test --coverage --watchAll false",
     "eject": "react-scripts eject"
   },
