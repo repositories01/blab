@@ -12,8 +12,8 @@ import Input from "../../components/Input";
 import PageHeader from "../../components/PageHeader";
 import Textarea from "../../components/Textarea";
 import Select from "../../components/Select";
-import getValidationErrors from "../../utils/getValidationsErros";
-import api from "../../services/api";
+import getValidationErrors from "../../../utils/getValidationsErros";
+import api from "../../../services/api";
 import { useAuth } from "../../hooks/auth";
 import { useToast } from "../../hooks/toast";
 

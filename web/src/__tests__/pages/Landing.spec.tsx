@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Landing from "../../pages/Landing";
+import Landing from "../../presentation/pages/Landing";
 import { render } from "@testing-library/react";
 
 describe("Landing page", () => {

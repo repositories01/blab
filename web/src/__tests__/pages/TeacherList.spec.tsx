@@ -1,6 +1,6 @@
 import React from "react";
-import TeacherList from "../../pages/TeacherList";
-import TeacherItem from "../../components/TeacherItem";
+import TeacherList from "../../presentation/pages/TeacherList";
+import TeacherItem from "../../presentation/components/TeacherItem";
 import { render, fireEvent, wait, screen } from "@testing-library/react";
 import { debug } from "console";
 

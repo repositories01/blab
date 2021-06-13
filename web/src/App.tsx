@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Routes from "./routes";
+import Routes from "./presentation/routes";
 
 import "./assets/styles/global.css";
-import AppProvider from "./hooks/index";
-import GlobalStyle from './styles/global'
+import AppProvider from "./presentation/hooks/index";
+import GlobalStyle from './presentation/styles/global'
 
 function App() {
   return (

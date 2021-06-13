@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import TeacherList from "../../pages/TeacherList";
-import TeacherItem from "../../components/TeacherItem";
+import TeacherList from "../../presentation/pages/TeacherList";
+import TeacherItem from "../../presentation/components/TeacherItem";
 import { render, fireEvent, wait } from "@testing-library/react";
 
 

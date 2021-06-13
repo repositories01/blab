@@ -2,8 +2,8 @@ import React from "react";
 import whatsappIcon from "../../assets/images/icons/whatsapp.svg";
 
 import "./styles.css";
-import api from "../../services/api";
-import { parseCurrencyValueToUSD } from "../../utils/parseCurrencyValue";
+import api from "../../../services/api";
+import { parseCurrencyValueToUSD } from "../../../utils/parseCurrencyValue";
 
 export interface Teacher {
   id: number;
