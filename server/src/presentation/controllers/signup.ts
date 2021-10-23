@@ -1,5 +1,6 @@
 import { IEmailValidator } from '../protocols/email-validator'
-export class SignUpController {
+import { Controller } from '../protocols'
+export class SignUpController implements Controller {
   private readonly emailValidator: IEmailValidator
 
   constructor(emailValidator: IEmailValidator) {
