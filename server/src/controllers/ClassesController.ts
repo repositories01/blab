@@ -66,7 +66,6 @@ export default class ClassesController {
         const userId = (decoded as TokenInterface).user
 
         try {
-
             await trx('users')
                 .update({
                     whatsapp, bio
