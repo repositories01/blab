@@ -1,0 +1,47 @@
+Arguments: 
+  /home/thiagomedina/.nvm/versions/node/v12.22.7/bin/node /home/thiagomedina/.nvm/versions/node/v12.22.7/bin/yarn add tfst
+
+PATH: 
+  /home/thiagomedina/.nvm/versions/node/v12.22.7/bin:/home/thiagomedina/.local/share/umake/bin:/home/thiagomedina/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/thiagomedina/.fzf/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  12.22.7
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/tfst: Not found
+      at Request.params.callback [as _callback] (/home/thiagomedina/.nvm/versions/node/v12.22.7/lib/node_modules/yarn/lib/cli.js:67029:18)
+      at Request.self.callback (/home/thiagomedina/.nvm/versions/node/v12.22.7/lib/node_modules/yarn/lib/cli.js:140883:22)
+      at Request.emit (events.js:314:20)
+      at Request.<anonymous> (/home/thiagomedina/.nvm/versions/node/v12.22.7/lib/node_modules/yarn/lib/cli.js:141855:10)
+      at Request.emit (events.js:314:20)
+      at IncomingMessage.<anonymous> (/home/thiagomedina/.nvm/versions/node/v12.22.7/lib/node_modules/yarn/lib/cli.js:141777:12)
+      at Object.onceWrapper (events.js:420:28)
+      at IncomingMessage.emit (events.js:326:22)
+      at endReadableNT (_stream_readable.js:1241:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+
+npm manifest: 
+  {
+    "name": "new_api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
